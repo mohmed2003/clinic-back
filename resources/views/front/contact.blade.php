@@ -1,9 +1,10 @@
 @extends('front.parent')
 
-@section('title','name')
+@section('title','contact')
 
 @section('style')
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 @endsection
 
@@ -24,14 +25,14 @@
                     <nav class="breadcrumb-nav" aria-label="breadcrumb">
 
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+                            <li class="breadcrumb-item"><a href="{{route('view.index')}}">{{__('app.home')}}</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{__('app.contact')}}</li>
 
                         </ol>
 
                 </nav>
 
-                    <h1 class="main-title">How Can We Help?</h1>
+                    <h1 class="main-title">{{__('app.contactTitle')}}</h1>
 
                 </div>
 
@@ -56,30 +57,30 @@
                                 <div class="chat w-50 m-auto">
                                     <form>
                                         <div class="mb-3">
-                                          <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                          <label for="email" class="form-label">{{__('app.emailAddr')}}</label>
+                                          <input type="email" id="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                          <div id="emailHelp" class="form-text">{{__('app.neverShare')}}</div>
                                         </div>
                                         <div class="mb-3">
-                                          <label for="exampleInputPassword1" class="form-label">Name</label>
-                                          <input type="text" class="form-control" id="exampleInputPassword1">
+                                          <label for="name" class="form-label">{{__('app.name')}}</label>
+                                          <input type="text" id="name" name="name" class="form-control" id="exampleInputPassword1">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-check-label d-block mb-2" for="exampleCheck1">Massge</label>
-                                            <textarea name="" class="form-control form-label" id="exampleCheck1" cols="30" rows="10"></textarea>
+                                            <label class="form-check-label d-block mb-2 form-label" for="massge">{{__('app.subject')}}</label>
+                                            <textarea name="" class="form-control form-label" id="massge" name="massge" cols="30" rows="10"></textarea>
                                           </div>
-                                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                                        <button type="button" onclick="performStore()" class="btn btn-primary submit">{{__('app.submit')}}</button>
                                       </form>
 
                             </div>
                         </div>
 
-                        <div class="col-lg-6">
+                        {{-- <div class="col-lg-6">
 
                             <div class="box-item info-box no-bg padding-box">
 
                                 <div class="title-wrap ">
-                                    <h1 class="main-title">our information</h1>
+                                    <h1 class="main-title">{{__('app.ourInformation')}}</h1>
                                 </div>
                                 <div class="info-items">
 
@@ -88,8 +89,8 @@
                                         <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
                                         <div class="info-texts">
 
-                                            <span class="text-item info-title">ADDRESS</span>
-                                            <span class="text-item info-val">AL NA'AYEM AL IZDIHAR DISTRICT 3666</span>
+                                            <span class="text-item info-title">{{__('app.address')}}</span>
+                                            <span class="text-item info-val">{{__('app.addressdesFoot')}}</span>
 
                                         </div>
 
@@ -99,7 +100,7 @@
                                         <div class="info-icon"><i class="far fa-envelope"></i></div>
                                         <div class="info-texts">
 
-                                            <span class="text-item info-title">EMAIL</span>
+                                            <span class="text-item info-title">{{__('app.mail')}}</span>
                                             <a href="#" class="text-item info-val">INFO@MFHMC.SA</a>
 
                                         </div>
@@ -110,7 +111,7 @@
                                         <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
                                         <div class="info-texts">
 
-                                            <span class="text-item info-title">PHONE</span>
+                                            <span class="text-item info-title">{{__('app.phone')}}</span>
                                             <span class="text-item info-val">014358888</span>
 
                                         </div>
@@ -128,7 +129,7 @@
                             <div class="box-item hours-box no-bg padding-box">
 
                                 <div class="title-wrap ">
-                                    <h1 class="main-title">Opening Hours</h1>
+                                    <h1 class="main-title">{{__('app.openingHours')}}</h1>
                                 </div>
                                 <div class="info-items">
 
@@ -136,7 +137,7 @@
 
                                         <div class="info-texts ">
 
-                                            <span class="text-item info-title">SATURDAY - THURSDAY</span>
+                                            <span class="text-item info-title">{{__('app.day1')}}</span>
                                             <span class="text-item info-val">09:00 - 20:00</span>
 
                                         </div>
@@ -146,7 +147,7 @@
 
                                         <div class="info-texts ">
 
-                                            <span class="text-item info-title">SATURDAY - FRIDAY</span>
+                                            <span class="text-item info-title">{{__('app.day2')}}</span>
                                             <span class="text-item info-val">14:00 - 20:00</span>
 
                                         </div>
@@ -170,7 +171,7 @@
 
                             </div>
 
-                        </div>
+                        </div> --}}
 
                     </div>
         </section>
@@ -187,6 +188,20 @@
 @endsection
 
 @section('script')
-
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{asset('js/crud.js')}}"></script>
+<script>
+    function performStore(){
+        let formData = new FormData();
+        formData.append('name',document.getElementById('name').value);
+        formData.append('email',document.getElementById('email').value);
+        formData.append('massge',document.getElementById('massge').value);
+        store('/clinic/contact/stor/' , formData)
+        document.getElementById('name').value="";
+        document.getElementById('email').value="";
+        document.getElementById('massge').value="";
+    }
+    </script>
 
 @endsection

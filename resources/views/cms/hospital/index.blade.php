@@ -22,7 +22,7 @@
                             </div> --}}
 
                             <div class="input-icon col-md-2">
-                                <input type="text" class="form-control" placeholder="Search By Eamil"
+                                <input type="text" class="form-control" placeholder="Search By Name"
                                    name='name' @if( request()->name) value={{request()->name}} @endif/>
                                   <span>
                                       <i class="flaticon2-search-1 text-muted"></i>
@@ -74,6 +74,7 @@
                       <th>Name</th>
                       <th>City Name</th>
                       <th>Country Name</th>
+                      <th>URL</th>
                       @canany(['Show Hospital','Delete Hospital','Edit Hospital'])
                       <th>Setting</th>
                       @endcanany
@@ -86,6 +87,7 @@
                       <td>{{$hospital->name}}</td>
                       <td>{{$hospital->city->name ?? ""}}</td>
                       <td>{{$hospital->city->country->name ?? ""}}</td>
+                      <td>{{Str::substr($hospital->url, 0,15)."..."}}</td>
                       @canany(['Show Hospital','Delete Hospital','Edit Hospital'])
                       <td>
                       <div class="btn-group">
@@ -96,7 +98,7 @@
                         <button type="button" onclick="performDestroy({{$hospital->id}},this)"  class="btn btn-danger">Delete</button>
                         @endcan
                         @can('Show Hospital')
-                        {{-- <a href="{{route('opinions.show',$hospital->id)}}"  class="btn btn-success">Show</a> --}}
+                        <a href="{{route('hospitals.show',$hospital->id)}}"  class="btn btn-success">Show</a>
                         @endcan
                       </div>
                     </td>

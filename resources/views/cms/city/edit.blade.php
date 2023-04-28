@@ -24,12 +24,8 @@
             <!-- /.card-header -->
             <!-- form start -->
             <form>
-                <div class="row">
 
-                    <!-- /.col -->
-                  </div>
 
-                <div class="row">
 
               <div class="card-body">
                 <div class="form-group col-md-6">
@@ -57,7 +53,18 @@
                   value="{{ $cities->street }}" placeholder="Enter street of City">
                 </div>
 
+
+              <div class="form-group col-md-6">
+                <label for="name_ar">Name City_ar</label>
+                <input type="text" class="form-control" id="name_ar" name="name_ar" placeholder="Name" value="{{$cities->name_ar}}">
               </div>
+              <div class="form-group col-md-6">
+                <label for="street_ar">Street_ar</label>
+                <input type="text" class="form-control" id="street_ar" name="street_ar" placeholder="street" value="{{$cities->street_ar}}">
+              </div>
+
+
+
             </div>
 
               <!-- /.card-body -->

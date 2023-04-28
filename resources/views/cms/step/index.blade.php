@@ -17,7 +17,9 @@
                     <a href="{{route('createStep',$id)}}" class="btn btn-success">Add new step</a>
                     {{-- @endcan --}}
                     {{-- @can('Delete step') --}}
-                    <a href="{{route('truncate-step')}}" class="btn btn-danger">Delete all steps</a></h3>
+                    <a href="{{route('indexServices')}}" class="btn btn-success">Go back</a>
+
+                    {{-- <a href="{{route('truncate-step')}}" class="btn btn-danger">Delete all steps</a></h3> --}}
                     {{-- @endcan --}}
                 {{-- <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -68,9 +70,8 @@
                     @endforeach
                   </tbody>
                 </table>
-                <div class="card-footer">
-                    <a href="{{route('indexServices')}}" class="btn btn-success">Go back</a>
-                  </div>
+                {{-- <div class="card-footer">
+                  </div> --}}
               </div>
               {{$steps->links()}}
               <!-- /.card-body -->

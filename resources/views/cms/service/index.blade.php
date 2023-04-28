@@ -57,7 +57,7 @@
                       <tr>
                       <th>ID</th>
                       <th>Title</th>
-                      <th>Description</th>
+                      {{-- <th>Description</th> --}}
                       @canany(['Show Service', 'Delete Service', 'Edit Service'])
                       <th>Sup_Title</th>
                       <th>Sup_Description</th>
@@ -71,7 +71,7 @@
                     <tr>
                       <td>{{$service->id}}</td>
                       <td>{{$service->title}}</td>
-                      <td>{{Str::substr($service->description, 0,30)."..."}}</td>
+                      {{-- <td>{{Str::substr($service->description, 0,30)."..."}}</td> --}}
                       <td><a href="{{route('indexSupTitle',['id'=>$service->id])}}"
                         class="btn btn-info">({{$service->sup_titles_count}})
                         sup_title/s</a> </td>

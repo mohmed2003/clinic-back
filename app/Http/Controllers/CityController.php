@@ -39,9 +39,10 @@ class CityController extends Controller
     public function create()
     {
         $countries=Country::orderBy('name','asc')->get();
+        $countries_ar=Country::orderBy('name','asc')->get();
         $this->authorize('create' , City::class);
 
-        return response()->view('cms.city.create',compact('countries'));
+        return response()->view('cms.city.create',compact('countries','countries_ar'));
     }
 
     /**
@@ -55,7 +56,9 @@ class CityController extends Controller
         $validator=validator($request->all(),[
             'name'=>'required|string',
             'street'=>'nullable|string',
-            'country_id'=>'required'
+            'country_id'=>'required',
+            'name_ar'=>'required|string',
+            'street_ar'=>'nullable|string',
           ]);
                  if($validator->fails()){
                     return response()->json([
@@ -67,6 +70,8 @@ class CityController extends Controller
                     $cities->name=$request->get('name');
                     $cities->country_id=$request->get('country_id');
                     $cities->street=$request->get('street');
+                    $cities->name_ar=$request->get('name_ar');
+                    $cities->street_ar=$request->get('street_ar');
                     $isSaved=$cities->save();
                     return response()->json([
                         'icon'=>'success',
@@ -84,9 +89,11 @@ class CityController extends Controller
     public function show($id)
     {
         $cities=City::findOrFail($id);
+        $countries=Country::all();
+
         $this->authorize('view' , City::class);
 
-        return response()->view('cms.city.show',compact('cities'));
+        return response()->view('cms.city.show',compact('cities','countries'));
     }
 
     /**
@@ -117,6 +124,8 @@ class CityController extends Controller
             'name' => 'required',
             'street' => 'nullable',
             'country_id' => 'required',
+            'name_ar'=>'required|string',
+            'street_ar'=>'nullable|string',
         ] , [
 
         ]);
@@ -126,7 +135,8 @@ class CityController extends Controller
             $cities->name = $request->get('name');
             $cities->street = $request->get('street');
             $cities->country_id = $request->get('country_id');
-
+            $cities->name_ar=$request->get('name_ar');
+            $cities->street_ar=$request->get('street_ar');
             $isUpdate = $cities->save();
             return ['redirect'=>route('cities.index')];
             return response()->json([

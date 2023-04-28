@@ -69,8 +69,7 @@
   function performUpdate(){
       let formData = new FormData();
       formData.append('email',document.getElementById('email').value);
-      storeRoute('/cms/password/email/' , formData)
-      console.log(document.getElementById('email').value);
+      storeRoute('/cms/password/request_password/' , formData)
   }
 </script>
 </body>

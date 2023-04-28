@@ -60,7 +60,9 @@ class Sup_descriptionController extends Controller
 
   $validator=validator($request->all(),[
     // 'title'=>'required|string|min:2|max:20',
-    'description'=>'required'
+    'description'=>'required',
+    'description_ar'=>'required'
+
   ]);
          if($validator->fails()){
             return response()->json([
@@ -69,9 +71,9 @@ class Sup_descriptionController extends Controller
             ],400);
          }else{
             $sup_descriptions=new SupDescription();
-            // $sup_descriptions->title=$request->get('title');
-            $sup_descriptions->service_id=$request->service_id;
+            $sup_descriptions->service_id=$request->get('service_id');
             $sup_descriptions->description=$request->get('description');
+            $sup_descriptions->description_ar=$request->get('description_ar');
             $isSaved=$sup_descriptions->save();
             return response()->json([
                 'icon'=>'success',
@@ -91,7 +93,7 @@ class Sup_descriptionController extends Controller
         $sup_descriptions=SupDescription::findOrFail($id);
         // $this->authorize('view' , SupTitle::class);
 
-        return response()->view('cms.card.show',compact('sup_descriptions'));
+        return response()->view('cms.card.show',compact('sup_descriptions','id'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -104,7 +106,7 @@ class Sup_descriptionController extends Controller
         $sup_descriptions=SupDescription::findOrFail($id);
         // $this->authorize('update' , SupTitle::class);
 
-        return response()->view('cms.card.edit',compact('sup_descriptions'));
+        return response()->view('cms.card.edit',compact('sup_descriptions','id'));
     }
 
     /**
@@ -117,15 +119,15 @@ class Sup_descriptionController extends Controller
     public function update(Request $request, $id)
     {
         $validator=Validator($request->all([
-            // 'title'=>'required|string|min:2|max:25',
-            'description'=>'required'
+            'description'=>'required',
+            'description_ar'=>'required'
         ]));
 
         if(!$validator->fails()){
         $sup_descriptions=SupDescription::findOrFail($id);
-        // $sup_descriptions->title=$request->get('title');
-        $sup_descriptions->service_id=$request->service_id;
+        $sup_descriptions->service_id=$request->get('service_id');
         $sup_descriptions->description=$request->get('description');
+        $sup_descriptions->description_ar=$request->get('description_ar');
         $isUpdate=$sup_descriptions->save();
 
         // return response()->json([

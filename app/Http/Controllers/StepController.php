@@ -60,7 +60,9 @@ class StepController extends Controller
 
   $validator=validator($request->all(),[
     // 'title'=>'required|string|min:2|max:20',
-    'description'=>'required'
+    'description'=>'required',
+    'description_ar'=>'required'
+
   ]);
          if($validator->fails()){
             return response()->json([
@@ -72,6 +74,8 @@ class StepController extends Controller
             // $steps->title=$request->get('title');
             $steps->service_id=$request->service_id;
             $steps->sentence=$request->get('description');
+            $steps->sentence_ar=$request->get('description_ar');
+
             $isSaved=$steps->save();
             return response()->json([
                 'icon'=>'success',
@@ -91,7 +95,7 @@ class StepController extends Controller
         $steps=Step::findOrFail($id);
         // $this->authorize('view' , SupTitle::class);
 
-        return response()->view('cms.step.show',compact('steps'));
+        return response()->view('cms.step.show',compact('steps','id'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -104,7 +108,7 @@ class StepController extends Controller
         $steps=Step::findOrFail($id);
         // $this->authorize('update' , SupTitle::class);
 
-        return response()->view('cms.step.edit',compact('steps'));
+        return response()->view('cms.step.edit',compact('steps','id'));
     }
 
     /**
@@ -118,7 +122,9 @@ class StepController extends Controller
     {
         $validator=Validator($request->all([
             // 'title'=>'required|string|min:2|max:25',
-            'description'=>'required'
+            'description'=>'required',
+            'description_ar'=>'required'
+
         ]));
 
         if(!$validator->fails()){
@@ -126,6 +132,8 @@ class StepController extends Controller
         // $steps->title=$request->get('title');
         $steps->service_id=$request->service_id;
         $steps->sentence=$request->get('description');
+        $steps->sentence_ar=$request->get('description_ar');
+
         $isUpdate=$steps->save();
 
         // return response()->json([

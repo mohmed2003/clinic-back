@@ -10,6 +10,8 @@ class Doctor extends Model
 {
     use HasFactory ,SoftDeletes;
 
+    const DEFAULT_IMAGE = 'storage/images/doctor/person.png';
+
     public function spachilty(){
         return $this->belongsTo(Spachilty::class);
     }
@@ -24,6 +26,22 @@ class Doctor extends Model
         static::deleting(function($doctor) {
             $doctor->user()->delete();
 
+        });
+    }
+
+    public function getFullNameAttribute(){
+        return $this->user->f_name ."".$this->user->l_name;
+    }
+
+    protected static function bootImage()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            // Set default image if image is not provided
+            if (empty($user->image)) {
+                $user->image = self::DEFAULT_IMAGE;
+            }
         });
     }
 }

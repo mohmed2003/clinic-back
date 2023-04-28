@@ -16,7 +16,6 @@ class Sup_titleController extends Controller
     {
         //
         $sup_titles = SupTitle::where('service_id', $id)->orderBy('created_at', 'desc')->paginate(5);
-
         return response()->view('cms.sup_title.index',compact('id','sup_titles'));
     }
 
@@ -59,8 +58,10 @@ class Sup_titleController extends Controller
     {
 
   $validator=validator($request->all(),[
-    'title'=>'required|string|min:2|max:20',
-    'description'=>'required'
+    'title'=>'required|string|min:2|max:70',
+    // 'description'=>'required',
+    'title_ar'=>'required|string|min:2|max:70',
+    // 'description_ar'=>'required'
   ]);
          if($validator->fails()){
             return response()->json([
@@ -70,8 +71,10 @@ class Sup_titleController extends Controller
          }else{
             $sup_titles=new SupTitle();
             $sup_titles->title=$request->get('title');
-            $sup_titles->service_id=$request->service_id;
+            $sup_titles->service_id=$request->get('service_id');
             $sup_titles->description=$request->get('description');
+            $sup_titles->description_ar=$request->get('description_ar');
+            $sup_titles->title_ar=$request->get('title_ar');
             $isSaved=$sup_titles->save();
             return response()->json([
                 'icon'=>'success',
@@ -91,7 +94,7 @@ class Sup_titleController extends Controller
         $sup_titles=SupTitle::findOrFail($id);
         // $this->authorize('view' , SupTitle::class);
 
-        return response()->view('cms.sup_title.show',compact('sup_titles'));
+        return response()->view('cms.sup_title.show',compact('sup_titles','id'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -104,7 +107,7 @@ class Sup_titleController extends Controller
         $sup_titles=SupTitle::findOrFail($id);
         // $this->authorize('update' , SupTitle::class);
 
-        return response()->view('cms.sup_title.edit',compact('sup_titles'));
+        return response()->view('cms.sup_title.edit',compact('sup_titles','id'));
     }
 
     /**
@@ -117,15 +120,19 @@ class Sup_titleController extends Controller
     public function update(Request $request, $id)
     {
         $validator=Validator($request->all([
-            'title'=>'required|string|min:2|max:25',
-            'description'=>'required'
+            'title'=>'required|string|min:2|max:70',
+            // 'description'=>'required',
+            'title_ar'=>'required|string|min:2|max:70',
+    // 'description_ar'=>'required'
         ]));
 
         if(!$validator->fails()){
         $sup_titles=SupTitle::findOrFail($id);
         $sup_titles->title=$request->get('title');
-        $sup_titles->service_id=$request->service_id;
+        $sup_titles->service_id=$request->get('service_id');
         $sup_titles->description=$request->get('description');
+        $sup_titles->description_ar=$request->get('description_ar');
+        $sup_titles->title_ar=$request->get('title_ar');
         $isUpdate=$sup_titles->save();
 
         // return response()->json([
@@ -151,10 +158,10 @@ class Sup_titleController extends Controller
          $sup_titles=SupTitle::destroy($id);
     }
 
-    public function truncate()
-    {
-        $sup_titles=SupTitle::truncate();
-        return redirect()->back()->with('success', 'Table truncated successfully!');
+    // public function truncate($id)
+    // {
+    //     $sup_titles=SupTitle::where('service_id',$id)->truncate();
+    //     return redirect()->back()->with('success', 'Table truncated successfully!');
 
-    }
+    // }
 }

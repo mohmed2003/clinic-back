@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\City;
+use App\Notifications\SendLinkResetPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -90,46 +91,46 @@ class UserAuthController extends Controller
     {
         return view('cms.restPassword.forgotPassword');
     }
+    public function forgetPassword(Request $request){
 
-    public function showResetForm(){
-
-    }
-   public function forgetPassword(Request $request){
-
-    $validator = Validator($request->all() ,[
-        'email' => 'required|email',
-    ]);
-
-    if(!$validator->fails()){
-        $admins=Admin::where('email',$request->get('email'));
-        $this->emailAddress=$admins;
-        $token=random_int(1000,9999);
-        // $admins->token=Hash::make($token);
-        // $admins->save();
-        return ['redirect' =>route('reset_password')];
-    }else{
-        return response()->json(['icon' => 'error' , 'title' =>$validator->getMessageBag()->first() ] , 400);
-    }
-   }
-
-    public function resetPassword(Request $request){
         $validator = Validator($request->all() ,[
-            'code' => 'required|digits:4',
-            'new_password' => 'required|string|min:6|confirmed',
+            'email' => 'required|email|exists:admins,email',
         ]);
 
-        if (!$validator->fails()) {
-            if (Hash::check($request->get('code'), $this->emailAddress->token)) {
-                $this->emailAddress->password=Hash::make($request->get('new_password'));
-                $this->emailAddress->token=null;
-                return ['redirect' =>route('view.login')];
-            }else{
-                return response()->json(['icon' => 'error' , 'title' => 'Password is not true'] , 400);
-            }
+        if(!$validator->fails()){
+            $admins=Admin::where('email',$request->get('email'))->first();
+            $this->emailAddress=$admins;
+            $token=random_int(1000,9999);
+            $admins->token=Hash::make($token);
+            $admins->save();
+            $admins->notify(new SendLinkResetPassword()) ;
         }else{
             return response()->json(['icon' => 'error' , 'title' =>$validator->getMessageBag()->first() ] , 400);
         }
-    }
+       }
+
+       public function showResetForm(){
+        return response()->view('cms.restpassword.rest');
+       }
+
+        public function resetPassword(Request $request){
+            $validator = Validator($request->all() ,[
+                'code' => 'required|digits:4',
+                'new_password' => 'required|string|min:6|confirmed',
+            ]);
+
+            if (!$validator->fails()) {
+                if (Hash::check($request->get('code'), $this->emailAddress->token)) {
+                    $this->emailAddress->password=Hash::make($request->get('new_password'));
+                    $this->emailAddress->token=null;
+                    return ['redirect' =>route('view.login')];
+                }else{
+                    return response()->json(['icon' => 'error' , 'title' => 'Password is not true'] , 400);
+                }
+            }else{
+                return response()->json(['icon' => 'error' , 'title' =>$validator->getMessageBag()->first() ] , 400);
+            }
+        }
 
     public function editProfile($id){
 

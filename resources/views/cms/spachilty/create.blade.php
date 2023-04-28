@@ -28,6 +28,10 @@
                     <label for="name">Name Spachilty</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                   </div>
+                    <div class="form-group">
+                      <label for="name_ar">Name Spachilty_ar</label>
+                      <input type="text" class="form-control" id="name_ar" name="name_ar" placeholder="Name">
+                    </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
@@ -48,6 +52,7 @@
   function performStore(){
     let formData=new FormData();
     formData.append('name',document.getElementById('name').value);
+    formData.append('name_ar',document.getElementById('name_ar').value);
     store('/cms/admin/spachilties', formData);
   }
 </script>

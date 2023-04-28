@@ -16,6 +16,7 @@ class CreateSpachiltiesTable extends Migration
         Schema::create('spachilties', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('name_ar');
             $table->softDeletes();
             $table->timestamps();
         });

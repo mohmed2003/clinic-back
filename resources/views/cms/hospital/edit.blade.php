@@ -28,6 +28,10 @@
                     <label for="name">Name Hospital</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{$hospitals->name}}">
                   </div>
+                  <div class="form-group col-md-6 ">
+                    <label for="name_ar">Name Hospital_ar</label>
+                    <input type="text" class="form-control" id="name_ar" name="name_ar" placeholder="Name" value="{{$hospitals->name_ar}}">
+                  </div>
                   <div class="form-group col-md-6">
                     <label>City Name</label>
                     <select class="form-control select2" id="city_id" name="city_id" style="width: 100%;">
@@ -36,11 +40,15 @@
                     @endforeach
                     </select>
                   </div>
+                  <div class="form-group col-md-6 ">
+                    <label for="url">URL</label>
+                    <input type="url" class="form-control" id="url" name="url" placeholder="url" value="{{$hospitals->url}}">
+                  </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="button" onclick="performUpdate({{$hospitals->id}})" class="btn btn-primary">Update</button>
+                  <button type="button" onclick="checkUrl({{$hospitals->id}})" class="btn btn-primary">Update</button>
                   <a href="{{route('hospitals.index')}}" class="btn btn-success">Go back</a>
 
                 </div>
@@ -53,13 +61,23 @@
 @endsection
 
 @section('scripts')
+
 <script>
-  function performUpdate(id){
+    function checkUrl(id) {
+  var inputText = document.getElementById("url").value;
+  var urlPattern = /^(http|https|ftp):\/\/([A-Za-z0-9\-]+\.)+[A-Za-z]{2,}(\/\S*)?$/;
+  if (! urlPattern.test(inputText)) {
+    alert("Input is a valid URL.");
+  } else {
     let formData=new FormData();
     formData.append('name',document.getElementById('name').value);
+    formData.append('name_ar',document.getElementById('name_ar').value);
+    formData.append('url',document.getElementById('url').value);
     formData.append('city_id',document.getElementById('city_id').value);
     storeRoute('/cms/admin/hospitals_update/'+id, formData);
   }
+}
+
 </script>
 
 @endsection

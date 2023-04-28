@@ -16,6 +16,8 @@ class CreateHospitalsTable extends Migration
         Schema::create('hospitals', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('name_ar');
+            $table->string('url');
             $table->foreignId('city_id');
             $table->foreign('city_id')->on('cities')->references('id')->cascadeOnDelete();
             $table->softDeletes();

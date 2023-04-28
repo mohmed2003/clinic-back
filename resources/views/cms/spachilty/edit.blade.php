@@ -28,7 +28,10 @@
                     <label for="name">Name Spachilty</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="name" value="{{$spachilties->name}}">
                   </div>
-
+                  <div class="form-group">
+                    <label for="name_ar">Name Spachilty_ar</label>
+                    <input type="text" class="form-control" id="name_ar" name="name_ar" placeholder="Name" value="{{$spachilties->name_ar}}">
+                  </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="button" onclick="performUbdate({{$spachilties->id}})" class="btn btn-primary">Update</button>
@@ -46,6 +49,7 @@
   function performUbdate(id){
     let formData=new FormData();
     formData.append('name',document.getElementById('name').value);
+    formData.append('name_ar',document.getElementById('name_ar').value);
     storeRoute('/cms/admin/spachilties_update/'+id, formData)
   }
 </script>

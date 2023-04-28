@@ -30,6 +30,11 @@
                     <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                   </div>
 
+                  <div class="form-group col-md-6 ">
+                    <label for="name_ar">Name Hospital_ar</label>
+                    <input type="text" class="form-control" id="name_ar" name="name_ar" placeholder="Name">
+                  </div>
+
                   <div class="form-group col-md-6">
                     <label>City Name</label>
                     <select class="form-control select2" id="city_id" name="city_id" style="width: 100%;">
@@ -38,11 +43,16 @@
                     @endforeach
                     </select>
                   </div>
+
+                  <div class="form-group col-md-6 ">
+                    <label for="url">URL</label>
+                    <input type="url" class="form-control" id="url" name="url" placeholder="url">
+                  </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="button" onclick="performStore()" class="btn btn-primary">Stor</button>
+                  <button type="button" onclick="checkUrl()" class="btn btn-primary">Stor</button>
                   <a href="{{route('hospitals.index')}}" class="btn btn-success">Go back</a>
                 </div>
 
@@ -56,12 +66,21 @@
 
 @section('scripts')
 <script>
-  function performStore(){
-    let formData=new FormData();
-    formData.append('name',document.getElementById('name').value);
-    formData.append('city_id',document.getElementById('city_id').value);
-    store('/cms/admin/hospitals', formData);
-  }
+     function checkUrl() {
+        // let inputText = document.getElementById("url").value;
+        // let urlPattern = /^(http|https|ftp):\/\/([A-Za-z0-9\-]+\.)+[A-Za-z]{2,}(\/\S*)?$/;
+        // if (! urlPattern.test(inputText)) {
+        //     alert("Input is a valid URL.");
+        //     return response()->json(['icon' => 'error' , 'title' =>$validator->getMessageBag()->first() ] , 400);
+        // } else {
+            let formData=new FormData();
+            formData.append('name',document.getElementById('name').value);
+            formData.append('name_ar',document.getElementById('name_ar').value);
+            formData.append('url',document.getElementById('url').value);
+            formData.append('city_id',document.getElementById('city_id').value);
+            store('/cms/admin/hospitals/', formData);
+
+                          }
 </script>
 
 @endsection

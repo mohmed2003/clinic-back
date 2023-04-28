@@ -11,7 +11,7 @@ class Service extends Model
 
     public function sup_titles(){
 
-        return $this->hasMany(SupTitle ::class);
+        return $this->hasMany(SupTitle::class);
     }
 
     public function sup_descriptions(){

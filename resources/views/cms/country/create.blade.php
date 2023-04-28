@@ -29,6 +29,10 @@
                     <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                   </div>
                   <div class="form-group">
+                    <label for="name_ar">Name Country_ar</label>
+                    <input type="text" class="form-control" id="name_ar" name="name_ar" placeholder="Name">
+                  </div>
+                  <div class="form-group">
                     <label for="code">Country Code</label>
                     <input type="text" class="form-control" id="code" name="code" placeholder="Code">
                   </div>
@@ -52,6 +56,7 @@
   function performStore(){
     let formData=new FormData();
     formData.append('name',document.getElementById('name').value);
+    formData.append('name_ar',document.getElementById('name_ar').value);
     formData.append('code',document.getElementById('code').value);
     store('/cms/admin/countries', formData);
   }

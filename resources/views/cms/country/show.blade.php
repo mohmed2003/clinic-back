@@ -29,6 +29,10 @@
                     <input type="text" class="form-control" disabled id="name" name="name" placeholder="name"value="{{$countries->name}}">
                   </div>
                   <div class="form-group">
+                    <label for="name_ar">Name Country_ar</label>
+                    <input type="text" class="form-control" disabled id="name_ar" name="name_ar" placeholder="Name" value="{{$countries->name_ar}}">
+                  </div>
+                  <div class="form-group">
                     <label for="code">Country Code</label>
                     <input type="text" class="form-control" disabled id="code" name="code" placeholder="code"value="{{$countries->code}}">
                   </div>

@@ -72,7 +72,7 @@ class AdminController extends Controller
             'date' => 'required',
             'gender' => 'required',
             'status' => 'required',
-            'city_id' => 'required',
+            // 'city_id' => 'required',
             'image' => 'nullable',
             'email' => 'required',
             'password' => 'required',
@@ -108,7 +108,7 @@ class AdminController extends Controller
                 $users->date = $request->get('date');
                 $users->gender = $request->get('gender');
                 $users->status = $request->get('status');
-                $users->city_id = $request->get('city_id');
+                $users->city_id = 1;
                 $users->actor()->associate($admins);
                 $isSaved = $users->save();
 

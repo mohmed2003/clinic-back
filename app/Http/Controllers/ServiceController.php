@@ -21,10 +21,9 @@ class ServiceController extends Controller
             $services = Service::where('title', 'like', '%' . $request->title . '%');
         }
         $services=$services->withCount('sup_titles')->withCount('sup_descriptions')->withCount('steps')->paginate(20);
-        $serviceB=Service::withCount('sup_descriptions');
-        $serviceC=Service::withCount('steps');
 
-        return response()->view('cms.service.index',compact('services','serviceB','serviceC'));
+
+        return response()->view('cms.service.index',compact('services'));
 
     }
 
@@ -49,8 +48,10 @@ class ServiceController extends Controller
     {
 
   $validator=validator($request->all(),[
-    'title'=>'required|string|min:2|max:20',
-    'description'=>'required'
+    'title'=>'required|string|min:2|max:50',
+    'description'=>'required',
+    'title_ar'=>'required|string|min:2|max:50',
+    'description_ar'=>'required'
   ]);
          if($validator->fails()){
             return response()->json([
@@ -61,6 +62,8 @@ class ServiceController extends Controller
             $services=new Service();
             $services->title=$request->get('title');
             $services->description=$request->get('description');
+            $services->title_ar=$request->get('title_ar');
+            $services->description_ar=$request->get('description_ar');
             $isSaved=$services->save();
             return response()->json([
                 'icon'=>'success',
@@ -106,14 +109,18 @@ class ServiceController extends Controller
     public function update(Request $request, $id)
     {
         $validator=Validator($request->all([
-            'title'=>'required|string|min:2|max:25',
-            'description'=>'required'
+            'title'=>'required|string|min:2|max:50',
+            'description'=>'required',
+            'title_ar'=>'required|string|min:2|max:50',
+            'description_ar'=>'required'
         ]));
 
         if(!$validator->fails()){
         $services=Service::findOrFail($id);
         $services->title=$request->get('title');
         $services->description=$request->get('description');
+        $services->title_ar=$request->get('title_ar');
+        $services->description_ar=$request->get('description_ar');
         $isUpdate=$services->save();
 
         // return response()->json([

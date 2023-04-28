@@ -41,6 +41,9 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{route('contacts.index')}}" class="nav-link">Contact</a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{route('view.index')}}" target="_blank" class="nav-link">Wepsite</a>
+      </li>
     </ul>
 
     <!-- SEARCH FORM -->
@@ -217,7 +220,7 @@
 
 
           <li class="nav-header">Role & Permission</li>
-@canany(['Index Roles', 'Create Role'])
+         @canany(['Index Roles', 'Create Role'])
 
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -665,10 +668,10 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; {{now()->year}}-{{now()->year+1}} <a href="https://adminlte.io">{{env('APP_NAME')}}</a>.</strong>
+    <strong>Copyright &copy; {{now()->year}}-{{now()->year+1}} <a href="https://adminlte.io">{{env('APP NAME')}}</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b>{{env('App_VRESION')}}-rc
+      <b>Version</b>{{env('App VRESION')}}-rc
     </div>
   </footer>
 

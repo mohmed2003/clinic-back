@@ -35,11 +35,18 @@
                         <textarea class="form-control" placeholder="Leave a comment here" id="description" name="description" style="height: 150px">{{$steps->sentence}}</textarea>
                       </div>
                   </div>
+
+                  <div class="form-group w-50">
+                    <label for="description_ar">Description_ar</label>
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="description_ar" name="description_ar" style="height: 150px">{{$steps->sentence_ar}}</textarea>
+                      </div>
+                  </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
                   <button type="button" onclick="performUpdate({{$steps->id}})" class="btn btn-primary">Update</button>
-                  <a href="{{route('steps.index')}}" class="btn btn-success">Go back</a>
+                  <a href="{{route('indexStep',$id)}}" class="btn btn-success">Go back</a>
 
                 </div>
               </form>
@@ -56,6 +63,8 @@
     let formData=new FormData();
     // formData.append('title',document.getElementById('title').value);
     formData.append('description',document.getElementById('description').value);
+    formData.append('description_ar',document.getElementById('description_ar').value);
+
     storeRoute('/cms/admin/steps_update/'+id, formData);
   }
 </script>

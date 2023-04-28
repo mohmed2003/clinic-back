@@ -35,10 +35,22 @@
                         <textarea class="form-control" disabled placeholder="Leave a comment here" id="description" name="description" style="height: 150px">{{$sup_titles->description}}</textarea>
                       </div>
                   </div>
+
+                  <div class="form-group">
+                    <label for="title_ar">Title Of sup_title_ar</label>
+                    <input type="text" class="form-control" disabled id="title_ar" name="title_ar" placeholder="Title" value="{{$sup_titles->title_ar}}">
+                  </div>
+
+                  <div class="form-group w-50">
+                    <label for="description_ar">Description_ar</label>
+                    <div class="form-floating">
+                        <textarea class="form-control" disabled placeholder="Leave a comment here" id="description_ar" name="description_ar" style="height: 150px">{{$sup_titles->description_ar}}</textarea>
+                      </div>
+                  </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <a href="{{route('sup_titles.index')}}" class="btn btn-success">Go back</a>
+                  <a href="{{route('indexSupTitle',$id)}}" class="btn btn-success">Go back</a>
 
                 </div>
               </form>

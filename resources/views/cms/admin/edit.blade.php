@@ -74,7 +74,7 @@
 
                     <div class="form-group col-md-6">
                         <label for="gender"> Gender</label>
-                        <select class="form-select form-select-sm" name="gender" style="width: 100%;"
+                        <select class="form-control select2" name="gender" style="width: 100%;"
                               id="gender" aria-label=".form-select-sm example">
                               <option selected> {{ $admins->user->gender }} </option>
                               <option value="male">Male</option>
@@ -84,7 +84,7 @@
 
                     <div class="form-group col-md-6">
                            <label for="status"> Status</label>
-                           <select class="form-select form-select-sm" name="status" style="width: 100%;"
+                           <select class="form-control select2" name="status" style="width: 100%;"
                                  id="status" aria-label=".form-select-sm example">
                                  <option selected> {{ $admins->user->status }} </option>
                                  <option value="active">Active </option>

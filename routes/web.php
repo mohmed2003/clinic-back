@@ -6,11 +6,13 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DoctorController;
-use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\OpinionController;
 use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\Home_ArController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\ServiceController;
@@ -19,8 +21,11 @@ use App\Http\Controllers\StepController;
 use App\Http\Controllers\Sup_descriptionController;
 use App\Http\Controllers\Sup_titleController;
 use App\Http\Controllers\UserAuthController;
+use App\Http\Controllers\LocalizationController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\App;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,14 +63,14 @@ Route::prefix('cms/')->middleware('guest:admin')->group(function(){
 });
 
 Route::prefix('cms')->group(function(){
-Route::get('/password/reset/',[UserAuthController::class ,'showLinkRequestForm'])->name('froget_passeord');
-Route::post('/password/email/',[UserAuthController::class ,'forgetPassword'])->name('email_passeord');
-Route::post('/password/update_password/',[UserAuthController::class ,'resetPassword'])->name('update_password');
-Route::get('/password/rest/',function(){
-return view('cms.restpassword.rest');
-})->name('reset_password');
-});
+    // Route::get('password/reset', [App\Http\Controllers\ForgotPasswordController::class,])->name('password.request');
+Route::get('password/email', [UserAuthController::class,'showLinkRequestForm'])->name('password.email');
+Route::post('/password/request_password/',[UserAuthController::class ,'forgetPassword'])->name('password.request');
+Route::get('/password/reset_form/',[UserAuthController::class ,'forgetPassword'])->name('view.resetForm');
+Route::post('/password/update_password/',[UserAuthController::class ,'resetPassword'])->name('password.update');
 
+});
+Route::view('layouts.app', 'app');
 
 Route::prefix('cms/admin')->middleware('auth:admin')->group(function(){
     Route::get('logout' , [UserAuthController::class , 'logout'])->name('view.logout');
@@ -113,19 +118,19 @@ Route::get('indexServices', [ServiceController::class,'index'])->name('indexServ
 
 Route::resource('sup_titles',Sup_titleController::class);
 Route::post('sup_titles_update/{id}',[Sup_titleController::class,'update'])->name('sup_titles_update');
-Route::get('truncate-sup_title', [Sup_titleController::class,'truncate'])->name('truncate-sup_title');
+Route::get('truncate-sup_title/{id}', [Sup_titleController::class,'truncate'])->name('truncate-sup_title');
 Route::get('/create/sup_titles/{id}', [Sup_titleController::class, 'createSupTitle'])->name('createSupTitle');
 Route::get('/index/sup_titles/{id}', [Sup_titleController::class, 'indexSupTitle'])->name('indexSupTitle');
 
 Route::resource('sup_descriptions',Sup_descriptionController::class);
 Route::post('sup_descriptions_update/{id}',[Sup_descriptionController::class,'update'])->name('sup_descriptions_update');
-Route::get('truncate-sup_description', [Sup_descriptionController::class,'truncate'])->name('truncate-sup_description');
+Route::get('truncate-sup_description/{id}', [Sup_descriptionController::class,'truncate'])->name('truncate-sup_description');
 Route::get('/create/sup_descriptions/{id}', [Sup_descriptionController::class, 'createSupDescription'])->name('createSupDescription');
 Route::get('/index/sup_descriptions/{id}', [Sup_descriptionController::class, 'indexSupDescription'])->name('indexSupDescription');
 
 Route::resource('steps',StepController::class);
 Route::post('steps_update/{id}',[StepController::class,'update'])->name('steps_update');
-Route::get('truncate-step', [StepController::class,'truncate'])->name('truncate-step');
+Route::get('truncate-step/{id}', [StepController::class,'truncate'])->name('truncate-step');
 Route::get('/create/steps/{id}', [StepController::class, 'createStep'])->name('createStep');
 Route::get('/index/steps/{id}', [StepController::class, 'indexStep'])->name('indexStep');
 
@@ -155,20 +160,30 @@ Route::post('updateProfile/{id}',[UserAuthController::class ,'updateProfile'])->
 Route::view('view_changePassword','cms.changePassword')->name('view_changePassword');
 
 });
+// LaravelLocalization::setLocale()
 
+Route::group([
+    'prefix'=>'clinic',
+],function(){
 
-Route::prefix('show/site')->middleware('auth:admin')->group(function(){
-
-Route::view('','front.index')->name('view.index');
-
-Route::view('/about','front.about')->name('view.about');
-
-Route::view('/contact','front.contact')->name('view.contact');
-
-Route::view('/services','front.services')->name('view.services');
-
-Route::view('/staff','front.staff')->name('view.staff');
-
-Route::view('/service/{id}','front.service')->name('view.service');
+Route::get('',[HomeController::class ,'home'])->name('view.index');
+Route::get('about',[HomeController::class ,'about'])->name('view.about');
+Route::get('services',[HomeController::class ,'services'])->name('view.services');
+Route::get('services/service/{id}',[HomeController::class ,'service'])->name('view.service');
+Route::get('staff',[HomeController::class ,'staff'])->name('view.staff');
+Route::get('contact',[HomeController::class ,'contact'])->name('view.contact');
+Route::post('contact/stor',[HomeController::class ,'storContact'])->name('stor.contact');
 });
+Route::get('locale/{lange}',[LocalizationController::class ,'setLocale'])->name('locale-set');
+
+// Route::group([
+//     'prefix'=>'clinic/ar',
+// ],function(){
+// Route::get('',[Home_ArController::class ,'home'])->name('view.index_ar');
+// Route::get('about',[Home_ArController::class ,'about'])->name('view.about_ar');
+// Route::get('services',[Home_ArController::class ,'services'])->name('view.services_ar');
+// Route::get('services/service/{id}',[Home_ArController::class ,'service'])->name('view.service_ar');
+// Route::get('staff',[Home_ArController::class ,'staff'])->name('view.staff_ar');
+// Route::get('contact',[Home_ArController::class ,'contact'])->name('view.contact_ar');
+// });
 

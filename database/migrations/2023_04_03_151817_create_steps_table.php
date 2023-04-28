@@ -16,6 +16,7 @@ class CreateStepsTable extends Migration
         Schema::create('steps', function (Blueprint $table) {
             $table->id();
             $table->string('sentence');
+            $table->string('sentence_ar');
             $table->foreignId('service_id');
             $table->foreign('service_id')->on('services')->references('id')->cascadeOnDelete();
             $table->timestamps();

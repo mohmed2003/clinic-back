@@ -11,7 +11,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <form action="" method="get" style="margin-bottom:2%;">
+                <form action="" class="d-none" method="get" style="margin-bottom:2%;">
                     <div class="row">
 
 
@@ -26,7 +26,7 @@
 
                     <div class="col-md-4">
                           <button class="btn btn-success btn-md" type="submit"> Filter</button>
-                          <a href="{{route('sup_titles.index')}}"  class="btn btn-danger">End Filter</a>
+                          <a href="{{route('indexSupTitle',$id)}}"  class="btn btn-danger">End Filter</a>
                           {{-- @can('Create-City') --}}
                     </div>
 
@@ -37,7 +37,8 @@
                     <a href="{{route('createSupTitle',$id)}}" class="btn btn-success">Add new sup_title</a>
                     {{-- @endcan --}}
                     {{-- @can('Delete sup_title') --}}
-                    <a href="{{route('truncate-sup_title')}}" class="btn btn-danger">Delete all sup_titles</a></h3>
+                    <a href="{{route('indexServices')}}" class="btn btn-success">Go back</a>
+                    {{-- <a href="{{route('truncate-sup_title',$id)}}" class="btn btn-danger">Delete all sup_titles</a></h3> --}}
                     {{-- @endcan --}}
                 {{-- <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -89,11 +90,11 @@
                   </tbody>
 
                 </table>
-                <div class="card-footer">
-                    <a href="{{route('indexServices')}}" class="btn btn-success">Go back</a>
-                  </div>
+
               </div>
-              {{$sup_titles->links()}}
+              <div class="text-center w-25 pt-5 m-auto">
+                {{$sup_titles->links()}}
+              </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->

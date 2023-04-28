@@ -16,7 +16,9 @@ class CreateSupTitlesTable extends Migration
         Schema::create('sup_titles', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
+            $table->string('description')->nullable();
+            $table->string('title_ar');
+            $table->string('description_ar')->nullable();
             $table->foreignId('service_id');
             $table->foreign('service_id')->on('services')->references('id')->cascadeOnDelete();
             $table->timestamps();

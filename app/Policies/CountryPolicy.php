@@ -32,7 +32,7 @@ class CountryPolicy
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Admin $admin)
+    public function view()
     {
         if(auth('admin')->check()){
             return auth()->user()->hasPermissionTo('Create Country')

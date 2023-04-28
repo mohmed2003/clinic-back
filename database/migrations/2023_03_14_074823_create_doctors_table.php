@@ -17,6 +17,7 @@ class CreateDoctorsTable extends Migration
             $table->id();
             $table->string('email');
             $table->string('description');
+            $table->string('description_ar');
             $table->enum('type',['co-doctor','from our stuff']);
             $table->foreignId('spachilty_id');
             $table->foreign('spachilty_id')->on('spachilties')->references('id')->cascadeOnDelete();

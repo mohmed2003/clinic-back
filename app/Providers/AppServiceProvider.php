@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -25,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // App::setLocale('ar');
+        App::setLocale(request('locale','ar'));
+        // echo config('app.loacle');
         Schema::defaultStringLength(191);
         Paginator::useBootstrap();
     }

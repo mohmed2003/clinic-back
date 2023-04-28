@@ -23,17 +23,28 @@
               <!-- /.card-header -->
               <!-- form start -->
               <form>
-                <div class="card-body">
-                  <div class="form-group">
+                <div class="card-body ">
+                  <div class="form-group col-6">
                     <label for="name">Name Opinion</label>
                     <input type="text" class="form-control" disabled id="name" name="name" placeholder="Name" value="{{$opinions->name}}">
                   </div>
 
-                  <div class="form-group w-50">
+                  <div class="form-group col-6">
                     <label for="description">Description</label>
                     <div class="form-floating">
                         <textarea class="form-control" disabled placeholder="Leave a comment here" id="description" name="description" style="height: 150px">{{$opinions->description}}
                         </textarea>
+                      </div>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="name_ar">Name Opinion_ar</label>
+                    <input type="text" class="form-control" disabled id="name_ar" name="name_ar" placeholder="Name" value="{{$opinions->name_ar}}">
+                  </div>
+
+                  <div class="form-group col-6">
+                    <label for="description_ar">Description_ar</label>
+                    <div class="form-floating">
+                        <textarea class="form-control" disabled placeholder="Leave a comment here" id="description_ar" name="description_ar" style="height: 150px">{{$opinions->description_ar}}</textarea>
                       </div>
                   </div>
                 <!-- /.card-body -->

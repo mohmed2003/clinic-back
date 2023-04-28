@@ -38,6 +38,15 @@
                     <label for="street">Street</label>
                     <input type="text" class="form-control" disabled id="street" name="street" placeholder="street"value="{{$cities->street}}">
                   </div>
+
+              <div class="form-group">
+                <label for="name_ar">Name City_ar</label>
+                <input type="text" class="form-control" disabled id="name_ar" name="name_ar" placeholder="Name" value="{{$cities->name_ar}}">
+              </div>
+              <div class="form-group">
+                <label for="street_ar">Street_ar</label>
+                <input type="text" class="form-control" disabled id="street_ar" name="street_ar" placeholder="street" value="{{$cities->street_ar}}">
+              </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">

@@ -37,6 +37,14 @@
                                       <i class="flaticon2-search-1 text-muted"></i>
                                   </span>
                                 </div>
+
+                            <div class="input-icon col-md-2">
+                                <input type="text" class="form-control" placeholder="Search By Type"
+                                   name='type' @if( request()->type) value={{request()->type}} @endif/>
+                                  <span>
+                                      <i class="flaticon2-search-1 text-muted"></i>
+                                  </span>
+                                </div>
 {{--
                                 <div class="input-icon col-md-2">
                                     <input type="text" class="form-control" placeholder="Search By Country"
@@ -98,9 +106,9 @@
                 <tr>
                     <td>{{$doctor->id}}</td>
                     <td>
-                      <img class="img-circle img-bordered-sm" src="{{asset('storage/images/doctor/'.$doctor->user->image ?? " ")}}" width="60" height="60" alt="User Image">
-                   </td>
-                    <td>{{$doctor->user->f_name .' '. $doctor->user->l_name  }}</td>
+                        <img class="img-circle img-bordered-sm" src="{{ isset($doctor) && isset($doctor->user) && $doctor->user->image ? asset('storage/images/doctor/'.$doctor->user->image) : asset('storage/images/doctor/person.png')}}" width="60" height="60" alt="User Image">
+                    </td>
+                    {{-- <td>{{$doctor->user->f_name ?? " " .' '. $doctor->user->l_name ?? " " }}</td> --}}
                     <td>{{$doctor->email}}</td>
                     <td>{{$doctor->user->gender ?? ""}}</td>
                     {{-- <td>{{$doctor->user->status ?? ""}}</td> --}}

@@ -53,7 +53,9 @@ class OpinionController extends Controller
 
   $validator=validator($request->all(),[
     'name'=>'required|string|min:2|max:20',
-    'description'=>'required'
+    'description'=>'required',
+    'name_ar'=>'required|string|min:2|max:20',
+    'description_ar'=>'required'
   ]);
          if($validator->fails()){
             return response()->json([
@@ -64,6 +66,8 @@ class OpinionController extends Controller
             $opinions=new Opinion();
             $opinions->name=$request->get('name');
             $opinions->description=$request->get('description');
+            $opinions->name_ar=$request->get('name_ar');
+            $opinions->description_ar=$request->get('description_ar');
             $isSaved=$opinions->save();
             return response()->json([
                 'icon'=>'success',
@@ -110,13 +114,17 @@ class OpinionController extends Controller
     {
         $validator=Validator($request->all([
             'name'=>'required|string|min:2|max:25',
-            'description'=>'required'
+            'description'=>'required',
+            'name_ar'=>'required|string|min:2|max:20',
+            'description_ar'=>'required'
         ]));
 
         if(!$validator->fails()){
         $opinions=Opinion::findOrFail($id);
         $opinions->name=$request->get('name');
         $opinions->description=$request->get('description');
+        $opinions->name_ar=$request->get('name_ar');
+        $opinions->description_ar=$request->get('description_ar');
         $isUpdate=$opinions->save();
 
         // return response()->json([

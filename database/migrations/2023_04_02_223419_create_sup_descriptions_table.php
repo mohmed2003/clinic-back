@@ -15,8 +15,9 @@ class CreateSupDescriptionsTable extends Migration
     {
         Schema::create('sup_descriptions', function (Blueprint $table) {
             $table->id();
-            $table->string("image");
+            // $table->string("image");
             $table->string('description');
+            $table->string('description_ar');
             $table->foreignId('service_id');
             $table->foreign('service_id')->on('services')->references('id')->cascadeOnDelete();
             $table->timestamps();

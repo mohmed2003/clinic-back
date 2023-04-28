@@ -11,23 +11,25 @@ const currentTime=()=>{
 
     let time=`${hh}:${mm}:${ss}`;
     el.innerText=time;
-   
+    el.classList
+
 };
 currentTime();
 setInterval(currentTime,1000);
 
-const dateHere=()=>{
-    const dateT=document.querySelector("h1.date");
-    let date=new Date();
-    let dd=date.getDate();
-    let mm=date.getMonth()+1;
-    let yy=date.getFullYear();
+// const dateHere=()=>{
+//     const dateT=document.querySelector("h1.date");
+//     let date=new Date();
+//     let dd=date.getDate();
+//     let mm=date.getMonth()+1;
+//     let yy=date.getFullYear();
 
-    dd=dd<10?`0${dd}`:dd;
-    mm=mm<10?`0${mm}`:mm;
+//     dd=dd<10?`0${dd}`:dd;
+//     mm=mm<10?`0${mm}`:mm;
 
-    let time=`${dd}/${mm}/${yy}`;
-    dateT.innerText=time;
-}
+//     let time=`${dd}/${mm}/${yy}`;
+//     dateT.innerText=time;
+// }
 dateHere();
 setInterval(dateHere,86400);
+

@@ -24,15 +24,26 @@
               <!-- form start -->
               <form>
                 <div class="card-body">
-                  <div class="form-group">
+                  <div class="form-group col-6">
                     <label for="name">Name Opinion</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                   </div>
 
-                  <div class="form-group w-50">
+                  <div class="form-group col-6">
                     <label for="description">Description</label>
                     <div class="form-floating">
                         <textarea class="form-control" placeholder="Leave a comment here" id="description" name="description" style="height: 150px"></textarea>
+                      </div>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="name_ar">Name Opinion_ar</label>
+                    <input type="text" class="form-control" id="name_ar" name="name_ar" placeholder="Name">
+                  </div>
+
+                  <div class="form-group col-6">
+                    <label for="description_ar">Description_ar</label>
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="description_ar" name="description_ar" style="height: 150px"></textarea>
                       </div>
                   </div>
                 <!-- /.card-body -->
@@ -56,6 +67,8 @@
     let formData=new FormData();
     formData.append('name',document.getElementById('name').value);
     formData.append('description',document.getElementById('description').value);
+    formData.append('name_ar',document.getElementById('name_ar').value);
+    formData.append('description_ar',document.getElementById('description_ar').value);
     store('/cms/admin/opinions', formData);
   }
 </script>

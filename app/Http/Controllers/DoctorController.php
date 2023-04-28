@@ -53,6 +53,8 @@ class DoctorController extends Controller
         $validator = Validator($request->all() , [
             'firstname' => 'required|string|min:2|max:15',
             'lastname' => 'required|string|min:2|max:15',
+            'firstname_ar' => 'required|string|min:2|max:15',
+            'lastname_ar' => 'required|string|min:2|max:15',
             'mobile' => ['required', 'not_regex:/^[^a-zA-Z]*$/'],
             'date' => 'required',
             'gender' => 'required',
@@ -60,8 +62,9 @@ class DoctorController extends Controller
             'city_id' => 'required',
             'spachilty_id' => 'required',
             'description' => 'required',
+            'description_ar' => 'required',
             'image' => 'nullable',
-            // 'type'=>'required',
+            'type'=>'required',
             'email' => 'required|unique:doctors,email',
         ] , [
 
@@ -73,6 +76,7 @@ class DoctorController extends Controller
             $doctors->type = $request->get('type');
             $doctors->spachilty_id = $request->get('spachilty_id');
             $doctors->description = $request->get('description');
+            $doctors->description_ar = $request->get('description_ar');
 
             $isSaved = $doctors->save();
             if($isSaved){
@@ -90,6 +94,8 @@ class DoctorController extends Controller
                     }
                 $users->f_name = $request->get('firstname');
                 $users->l_name = $request->get('lastname');
+                $users->f_name_ar = $request->get('firstname_ar');
+                $users->l_name_ar = $request->get('lastname_ar');
                 $users->mobile = $request->get('mobile');
                 $users->date = $request->get('date');
                 $users->gender = $request->get('gender');
@@ -156,6 +162,8 @@ return response()->view('cms.doctor.show',compact('doctors','cities','spachiltie
         $validator = Validator($request->all() , [
             'firstname' => 'required',
             'lastname' => 'required',
+            'firstname_ar' => 'required|string|min:2|max:15',
+            'lastname_ar' => 'required|string|min:2|max:15',
             'mobile' => 'required',
             'date' => 'required',
             'gender' => 'required',
@@ -163,6 +171,7 @@ return response()->view('cms.doctor.show',compact('doctors','cities','spachiltie
             'city_id' => 'required',
             'spachilty_id' => 'required',
             'description' => 'required',
+            'description_ar' => 'required',
             'image' => 'nullable',
             'email' => 'required',
             // 'type'=>'required',
@@ -178,6 +187,7 @@ return response()->view('cms.doctor.show',compact('doctors','cities','spachiltie
         $doctors->type = $request->get('type');
         $doctors->spachilty_id = $request->get('spachilty_id');
         $doctors->description = $request->get('description');
+        $doctors->description_ar = $request->get('description_ar');
 
         $isUpdated = $doctors->save();
 
@@ -197,6 +207,8 @@ return response()->view('cms.doctor.show',compact('doctors','cities','spachiltie
 
             $users->f_name = $request->get('firstname');
             $users->l_name = $request->get('lastname');
+            $users->f_name_ar = $request->get('firstname_ar');
+            $users->l_name_ar = $request->get('lastname_ar');
             $users->mobile = $request->get('mobile');
             $users->date = $request->get('date');
             $users->gender = $request->get('gender');

@@ -59,7 +59,8 @@ class CountryController extends Controller
     {
 
   $validator=validator($request->all(),[
-    'name'=>'required|string|min:3|max:20',
+    'name'=>'required|string|min:3|max:30',
+    'name_ar'=>'required|string|min:3|max:30',
     'code'=>'required|string:4'
   ]);
          if($validator->fails()){
@@ -70,6 +71,7 @@ class CountryController extends Controller
          }else{
             $countries=new Country();
             $countries->name=$request->get('name');
+            $countries->name_ar=$request->get('name_ar');
             $countries->code=$request->get('code');
             $isSaved=$countries->save();
             return response()->json([
@@ -116,13 +118,15 @@ class CountryController extends Controller
     public function update(Request $request, $id)
     {
         $validator=Validator($request->all([
-            // 'name'=>'required|string|min:3|max:20',
-            // 'code'=>'required'
+            'name'=>'required|string|min:3|max:20',
+            'name_ar'=>'required|string|min:3|max:30',
+            'code'=>'required'
         ]));
 
         if(!$validator->fails()){
         $countries=Country::findOrFail($id);
         $countries->name=$request->get('name');
+        $countries->name_ar=$request->get('name_ar');
         $countries->code=$request->get('code');
         $isUpdate=$countries->save();
 

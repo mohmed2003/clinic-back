@@ -25,21 +25,37 @@
             <!-- form start -->
             <form class=" p-2">
 
+                <div class="form-group col-md-12 d-flex align-items-center justify-content-center">
+                    <img class="img-circle m-auto img-bordered-sm" src="{{asset('storage/images/doctor/'.$doctors->user->image ?? " ")}}" width="200" height="200" alt="User Image">
+                </div>
+
                   <div class="row">
 
                     <div class="form-group col-md-6">
-                      <label for="firstname">First Name of Admin</label>
+                      <label for="firstname">First Name of Doctor</label>
                       <input type="text" class="form-control" disabled id="firstname" name="firstname"
-                      value="{{$doctors->user->f_name}}" placeholder="Enter First Name of Admin">
+                      value="{{$doctors->user->f_name}}" placeholder="Enter First Name of Doctor">
                     </div>
 
                     <div class="form-group col-md-6">
-                      <label for="lastname">Last Name of Admin</label>
+                      <label for="lastname">Last Name of Doctor</label>
                       <input type="text" class="form-control" disabled id="lastname" name="lastname"
-                      value="{{$doctors->user->l_name}}" placeholder="Enter Last Name of Admin">
+                      value="{{$doctors->user->l_name}}" placeholder="Enter Last Name of Doctor">
                     </div>
                   </div>
 
+                  <div class="row">
+
+                    <div class="form-group col-md-6">
+                      <label for="firstname_ar">First Name of Docotor_ar</label>
+                      <input type="text" class="form-control" disabled id="firstname_ar" name="firstname_ar" placeholder="Enter First Name of Doctor" value="{{$doctors->user->f_name_ar}}">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label for="lastname_ar">Last Name of Docotor_ar</label>
+                      <input type="text" class="form-control" disabled id="lastname_ar" name="lastname_ar" placeholder="Enter Last Name of Doctor" value="{{$doctors->user->l_name_ar}}">
+                    </div>
+                  </div>
                   <div class="row">
 
                     <div class="form-group col-md-6">
@@ -133,9 +149,14 @@
                       </div>
 
 
-                    <div class="form-group col-md-6 d-flex align-items-center justify-content-center">
-                        <img class="img-circle m-auto img-bordered-sm" src="{{asset('storage/images/doctor/'.$doctors->user->image ?? " ")}}" width="200" height="200" alt="User Image">
-                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="description_ar">Description_ar</label>
+                        <div class="form-floating">
+                            <textarea class="form-control" disabled placeholder="Leave a comment here" id="description_ar" name="description_ar" style="height: 150px">{{$doctors->description_ar}}</textarea>
+                          </div>
+                      </div>
+
+
                     </div>
                    <div class="card-footer">
                     {{-- <button type="button" onclick="performUpdate({{$doctors->id}})" class="btn btn-primary">Store</button> --}}

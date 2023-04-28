@@ -49,7 +49,8 @@ class SpachiltyController extends Controller
     {
 
   $validator=validator($request->all(),[
-    'name'=>'required|string|min:3|max:20',
+    'name'=>'required|string|min:3|max:40',
+    'name_ar'=>'required|string|min:3|max:40',
   ]);
          if($validator->fails()){
             return response()->json([
@@ -59,6 +60,7 @@ class SpachiltyController extends Controller
          }else{
             $spachilties=new Spachilty();
             $spachilties->name=$request->get('name');
+            $spachilties->name_ar=$request->get('name_ar');
             $isSaved=$spachilties->save();
             return response()->json([
                 'icon'=>'success',
@@ -106,11 +108,13 @@ class SpachiltyController extends Controller
     {
         $validator=Validator($request->all([
              'name'=>'required|string|min:3|max:20',
+             'name_ar'=>'required|string|min:3|max:40',
         ]));
 
         if(!$validator->fails()){
         $spachilties=Spachilty::findOrFail($id);
         $spachilties->name=$request->get('name');
+        $spachilties->name_ar=$request->get('name_ar');
         $isUpdate=$spachilties->save();
 
         // return response()->json([

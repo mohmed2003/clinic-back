@@ -1,6 +1,6 @@
 @extends('front.parent')
 
-@section('title','name')
+@section('title','about')
 
 @section('style')
 
@@ -20,8 +20,8 @@
                 <nav class="breadcrumb-nav" aria-label="breadcrumb">
 
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                    <li class="breadcrumb-item"><a href="{{route('view.index')}}">{{__('app.home')}}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{__('app.about')}}</li>
 
                   </ol>
 
@@ -62,13 +62,12 @@
 
                                 <div class="title-wrap mb-3">
 
-                                    <h1 class="main-title">who are we ?</h1>
+                                    <h1 class="main-title">{{__('app.who')}}</h1>
 
                                 </div>
                                 <p class="about-desc">
 
-                                    Believing In The Importance Of The Role Played By The Medical Support Services Sector In Assistant Of The Health Care Sector, We Set Up Medical Company In Riyadh-Kingdom Of Saudi Arabia In 2015. We Provide Integrated Medical Services Through Planning, Designing, Communicating, Establishing, And Operating Medical Projects In Accordance With The Highest International Standards In Addition, We Recruit The Best Medical And Administrative Personnel Qualified To Provide Up-To-Date Medical Services That Meet The Highest Global Standards Of Health Care Quality And Safety.
-
+                                    {{__('app.desWho')}}
                                 </p>
 
                             </div>
@@ -88,7 +87,7 @@
                                 <div class="exp-years">
 
                                     <p class="m-0"> + <span id="">20</span> </p>
-                                    Years
+                                    {{__('app.year')}}
 
                                 </div>
 
@@ -102,8 +101,7 @@
 
                                 <p class="about-desc">
 
-                                   Dr. Fahad Is A Healthcare Leader With 20+ Years’ Experience Promoting Organizational Growth And Public Health In Robust Administrative And Clinical Capacities. With Dr.Fahad’s Extensive Experience And Our Dedicated Staff, You Will Be Provided With High Quality Services And Support.We Strive For Excellence In Providing Healthcare Services, And We Look Forward To Serving Your Needs.
-                                </p>
+                                    {{__('app.dr_fahad')}}                                </p>
 
                             </div>
 
@@ -129,8 +127,8 @@
                                     </div>
                                     <div class="info-texts">
 
-                                        <h2 class="info-title">pur vision</h2>
-                                        <p class="info-desc">To Be The Preferred Personal Medical</p>
+                                        <h2 class="info-title">{{__('app.vision')}}</h2>
+                                        <p class="info-desc">{{__('app.desvision')}}</p>
 
                                     </div>
 
@@ -149,8 +147,8 @@
                                     </div>
                                     <div class="info-texts">
 
-                                        <h2 class="info-title">pur values</h2>
-                                        <p class="info-desc">Compassion , Honesty , Quality .</p>
+                                        <h2 class="info-title">{{__('app.values')}}</h2>
+                                        <p class="info-desc">{{__('app.desvalues')}}</p>
 
                                     </div>
 
@@ -169,8 +167,8 @@
                                     </div>
                                     <div class="info-texts">
 
-                                        <h2 class="info-title">pur mission</h2>
-                                        <p class="info-desc">To Make Medical Services Accessible Without A Need To</p>
+                                        <h2 class="info-title">{{__('app.mission')}}</h2>
+                                        <p class="info-desc">{{__('app.desmission')}}</p>
 
                                     </div>
 
@@ -202,10 +200,9 @@
 
                     <p class="banner-text">
 
-                        Our Service Saves Time And Effort For Our Clients By Remining & Coordinating The Service
-                        As Well As Providing Advice On The Most Suitable Provider With Reasonable Cost .
+                        {{__('app.bannerBrowser')}}
                     </p>
-                    <a class="banner-link duplicated-btn" href="services.html">Browser Our Services</a>
+                    <a class="banner-link duplicated-btn" href="{{route('view.services')}}">{{__('app.buttonBrowser')}}</a>
 
                 </div>
 
@@ -224,11 +221,10 @@
 
                 <div class="philosophy-banner padding-box">
 
-                    <h1 class="main-title med-title clr-main mb-4">Our Philosophy</h1>
+                    <h1 class="main-title med-title clr-main mb-4">{{__('app.philosophy')}}</h1>
                     <p class="banner-text">
 
-                        Excellence And Leadership In The Field Of Managing And Developing Medical Services, In Accordance With The Latest Global Systems And Standards. We Strive For Our Services To Be The First Choice For Individuals And Business Entities In The Field Of Health Care, And To Be The Desired Collaboration Target For Professionals With Excellent Medical And Management Expertise.
-                    </p>
+                        {{__('app.desphilosophy')}}                    </p>
 
 
                 </div>
@@ -253,16 +249,16 @@
                     </div>
                     <div class="carousel-inner">
                       <div class="carousel-item active">
-                        <img src="img/image (1).jpg" class="d-block w-100" alt="...">
+                        <img src="{{asset('front/img/image (1).jpg')}}" class="d-block w-100" alt="...">
                       </div>
                       <div class="carousel-item">
-                        <img src="img/1308676-1480657900.jpeg" class="d-block w-100" alt="...">
+                        <img src="{{asset('front/img/1308676-1480657900.jpeg')}}" class="d-block w-100" alt="...">
                       </div>
                       <div class="carousel-item">
-                        <img src="img/tbl_articles_article_22075_6095c8857c7-be96-4cb1-b9e4-eb59cf619665.jpg" class="d-block w-100" alt="...">
+                        <img src="{{asset('front/img/tbl_articles_article_22075_6095c8857c7-be96-4cb1-b9e4-eb59cf619665.jpg')}}" class="d-block w-100" alt="...">
                       </div>
                       <div class="carousel-item">
-                        <img src="img/_111780185_whatsubject.jpg" class="d-block w-100" alt="...">
+                        <img src="{{asset('front/img/_111780185_whatsubject.jpg')}}" class="d-block w-100" alt="...">
                       </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -283,116 +279,7 @@
 
         <!-- ***** contact-us-section Start ***** -->
 
-        <section class="section-style contact-us-section">
 
-            <div class="container">
-
-                <div class="contact-area">
-
-                    <div class="row">
-
-                        <div class="col-lg-6">
-
-                            <div class="contact-boxes">
-
-                                <div class="box-item info-box padding-box">
-
-                                    <div class="title-wrap ">
-                                        <span class="sub-title">contact us</span>
-                                        <h1 class="main-title">our information</h1>
-                                    </div>
-                                    <div class="info-items">
-
-                                        <div class="info-item">
-
-                                            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                                            <div class="info-texts">
-
-                                                <span class="text-item info-title">ADDRESS</span>
-                                                <span class="text-item info-val">AL NA'AYEM AL IZDIHAR DISTRICT 3666</span>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="info-item">
-
-                                            <div class="info-icon"><i class="far fa-envelope"></i></div>
-                                            <div class="info-texts">
-
-                                                <span class="text-item info-title">EMAIL</span>
-                                                <a href="#" class="text-item info-val">INFO@MFHMC.SA</a>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="info-item">
-
-                                            <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
-                                            <div class="info-texts">
-
-                                                <span class="text-item info-title">PHONE</span>
-                                                <span class="text-item info-val">014358888</span>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                                <div class="box-item hours-box padding-box">
-
-                                    <div class="title-wrap ">
-                                        <h1 class="main-title">Opening Hours</h1>
-                                    </div>
-                                    <div class="info-items">
-
-                                        <div class="info-item">
-
-                                            <div class="info-texts ">
-
-                                                <span class="text-item info-title">SATURDAY - THURSDAY</span>
-                                                <span class="text-item info-val">09:00 - 20:00</span>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="info-item">
-
-                                            <div class="info-texts ">
-
-                                                <span class="text-item info-title">SATURDAY - FRIDAY</span>
-                                                <span class="text-item info-val">14:00 - 20:00</span>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6">
-
-                           <div class="map-container mt-box mt-lg-0" id="map">
-
-                               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28979.453789321382!2d46.753383950057724!3d24.780666225054798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2efda2e71a4331%3A0xf746e0fda2277c89!2z2KfZhNin2LLYr9mH2KfYsdiMINin2YTYsdmK2KfYtiDYp9mE2LPYudmI2K_Zitip!5e0!3m2!1sar!2seg!4v1663162736376!5m2!1sar!2seg"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
 
         <!-- ***** contact-us-section End ***** -->
 
@@ -401,7 +288,7 @@
                 <div class="content w-75 d-flex align-items-center justify-content-center m-auto">
                     <iframe width="100%" height="315" src="https://www.youtube.com/embed/U24WMWyMr08?start=69" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                </div>
              </div>
-            </section>
+        </section>
         <!-- ***** footer Start ***** -->
 
 
@@ -409,5 +296,8 @@
 
 @section('script')
 
+<script>
 
+
+</script>
 @endsection

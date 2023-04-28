@@ -18,7 +18,9 @@
                     <a href="{{route('createSupDescription',$id)}}" class="btn btn-success">Add new sup_descriptions</a>
                     {{-- @endcan --}}
                     {{-- @can('Delete sup_descriptions') --}}
-                    <a href="{{route('truncate-sup_description')}}" class="btn btn-danger">Delete all sup_descriptionss</a></h3>
+                    <a href="{{route('indexServices')}}" class="btn btn-success">Go back</a>
+
+                    {{-- <a href="{{route('truncate-sup_description')}}" class="btn btn-danger">Delete all sup_descriptionss</a></h3> --}}
                     {{-- @endcan --}}
 
                 {{-- <div class="card-tools">
@@ -70,10 +72,10 @@
                     @endforeach
                   </tbody>
                 </table>
-                <div class="card-footer">
-                    <a href="{{route('indexServices')}}" class="btn btn-success">Go back</a>
-                  </div>
+                {{-- <div class="card-footer">
+                  </div> --}}
               </div>
+
               {{$sup_descriptions->links()}}
               <!-- /.card-body -->
             </div>

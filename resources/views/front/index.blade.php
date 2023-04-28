@@ -1,3 +1,11 @@
+<?php
+
+$hijriDate = new DateTime(null, new DateTimeZone('UTC'));
+$hijriDate->setTimestamp(time());
+$hijriDate->setTimeZone(new DateTimeZone('Asia/Riyadh')); // Set the time zone for the Hijri calendar
+$hijriDateFormatted = $hijriDate->format('d-m-Y'); // Format the Hijri date as needed
+
+?>
 @extends('front.parent')
 
 @section('title','FHMC')
@@ -29,22 +37,20 @@
                                 <svg version="1.1" class="img-fluid" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" id="blobSvg" style="opacity: 1;">                        <defs>                        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="50%">                            <stop offset="0%" style="stop-color: rgb(68, 106, 71);"></stop>           <stop offset="100%" style="stop-color: rgb(68, 106, 71);"></stop>                        </linearGradient>                        </defs>                                            <path id="blob" fill="url(#gradient)" style="opacity: 1;"><animate class="img-fluid" attributeName="d" dur="10s" repeatCount="indefinite" values="M400,314Q352,378,277,420Q202,462,143,396Q84,330,66.5,241.5Q49,153,125.5,97.5Q202,42,298.5,55Q395,68,421.5,159Q448,250,400,314Z;M392.2525,331.53996Q379.05994,413.07992,285.7525,456.15485Q192.44505,499.22978,100.80019,432.44731Q9.15533,365.66484,30.81018,260.57493Q52.46503,155.48501,121.45005,74.10764Q190.43506,-7.26974,268.13261,60.97003Q345.83016,129.2098,375.63761,189.6049Q405.44505,250,392.2525,331.53996Z;M388.67097,319.27849Q360.55699,388.55699,291.23441,379.72688Q221.91183,370.89678,145.00645,354.28387Q68.10108,337.67097,71.32903,251.33548Q74.55699,165,142.39247,119.95591Q210.22796,74.91183,286.12043,91.61398Q362.0129,108.31613,389.39892,179.15806Q416.78495,250,388.67097,319.27849Z;M429.79847,339.54154Q392.67727,429.08308,294.97368,455.00137Q197.27008,480.91966,143.94598,403.56786Q90.62188,326.21607,83.52769,246.22992Q76.43351,166.24376,136.8518,92.77008Q197.27008,19.29641,287.1482,55Q377.02632,90.70359,421.97299,170.3518Q466.91966,250,429.79847,339.54154Z;M390.7302,319.10952Q360.37524,388.21905,284.62068,409.39959Q208.86612,430.58014,161.11156,373.20082Q113.35701,315.8215,88.46857,238.04463Q63.58014,160.26776,136.76776,117.04463Q209.95537,73.8215,303.79007,69.52027Q397.62476,65.21905,409.35497,157.60952Q421.08517,250,390.7302,319.10952Z;M400,314Q352,378,277,420Q202,462,143,396Q84,330,66.5,241.5Q49,153,125.5,97.5Q202,42,298.5,55Q395,68,421.5,159Q448,250,400,314Z"></animate></path></svg>
                         <div class="content-time ">
                             <h1 class="clock"></h1>
-                            <h1 class="date"></h1>
+                            <h1 class="date">{{$hijriDateFormatted}}</h1>
                         </div>
                     </div>
                 </div>
 
                         <div class="title-wrap">
 
-                            <span class="sub-title">WELCOME TO MY FAMILY HEALTH MEDICAL COMPANY</span>
+                            <span class="sub-title">{{__('app.welcom')}}</span>
                             <h1 class="main-title">
-                                Nothing Is More
-                                Important Than
-                                Your Health
+                                {{__('app.main_title')}}
                             </h1>
 
                         </div>
-                        <a class="duplicated-btn more-btn" href="contact.html">contact-us</a>
+                        <a class="duplicated-btn more-btn" href="{{route('view.contact')}}">{{__('app.contact')}}</a>
                         <div class="welcome-info">
 
                             <a href="#" class="info-item">
@@ -52,8 +58,8 @@
                                 <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
                                 <div class="info-texts">
 
-                                    <span class="text-item info-title">ADDRESS</span>
-                                    <span class="text-item info-val">KING KHALED - RIYADH</span>
+                                    <span class="text-item info-title">{{__('app.address')}}</span>
+                                    <span class="text-item info-val">{{__('app.addressdes')}}</span>
 
                                 </div>
 
@@ -63,7 +69,7 @@
                                 <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
                                 <div class="info-texts">
 
-                                    <span class="text-item info-title">PHONE</span>
+                                    <span class="text-item info-title">{{__('app.phone')}}</span>
                                     <span class="text-item info-val">014358888</span>
 
                                 </div>
@@ -109,18 +115,17 @@
 
                                 <div class="title-wrap mb-3">
 
-                                    <span class="sub-title">about us </span>
-                                    <h1 class="main-title">who are we ?</h1>
+                                    <span class="sub-title">{{__('app.about')}} </span>
+                                    <h1 class="main-title">{{__('app.who')}}</h1>
 
                                 </div>
                                 <p class="about-desc">
 
-                                    Believing In The Importance Of The Role Played By The Medical Support Services Sector In Assistant Of The Health Care Sector , We Set Up Medical Company In Riyadh - Kingdom Of Saudi Arabia In 2015. We Provide Integrated Medical Services Through Planning , Designing , Communicating , Establishing , And Operating Medical Projects In Accordance With The Highest International Standards In Addition , We Recruit The Best Medical And Administrative Personnel Qualified To Provide Up - To - Date Medical Services That Meet The Highest Global Standards Of Health Care Quality And Safety .
-
+                                    {{__('app.desWho')}}
 
 
                                 </p>
-                                <a class="about-more duplicated-btn" href="about.html">view more</a>
+                                <a class="about-more duplicated-btn" href="{{route('view.about')}}">{{__('app.view')}}</a>
 
                             </div>
 
@@ -156,8 +161,8 @@
                                     </div>
                                     <div class="info-texts">
 
-                                        <h2 class="info-title">pur vision</h2>
-                                        <p class="info-desc">To Be The Preferred Personal Medical</p>
+                                        <h2 class="info-title">{{__('app.vision')}}</h2>
+                                        <p class="info-desc">{{__('app.desvision')}}</p>
 
                                     </div>
 
@@ -171,8 +176,8 @@
                                     </div>
                                     <div class="info-texts">
 
-                                        <h2 class="info-title">pur values</h2>
-                                        <p class="info-desc">Compassion , Honesty , Quality .</p>
+                                        <h2 class="info-title">{{__('app.values')}}</h2>
+                                        <p class="info-desc">{{__('app.desvalues')}}</p>
 
                                     </div>
 
@@ -187,8 +192,8 @@
                                     </div>
                                     <div class="info-texts">
 
-                                        <h2 class="info-title">pur mission</h2>
-                                        <p class="info-desc">To Make Medical Services Accessible Without A Need To</p>
+                                        <h2 class="info-title">{{__('app.mission')}}</h2>
+                                        <p class="info-desc">{{__('app.desmission')}}</p>
 
                                     </div>
 
@@ -233,7 +238,7 @@
 
                         <div class="col-md">
 
-                            <p class="banner-text">We Do A Lot More Things <br> And Lot More Helps .</p>
+                            <p class="banner-text">{{__('app.bannerMobile1')}} <br> {{__('app.bannerMobile2')}}</p>
 
                         </div>
 
@@ -258,14 +263,15 @@
 
                     <div class="title-wrap text-center mb-box mb-sm-5">
 
-                        <span class="sub-title">our services</span>
-                        <h1 class="main-title">We Provide Best Services</h1>
+                        <span class="sub-title">{{__('app.services')}}</span>
+                        <h1 class="main-title">{{__('app.titleOfServices')}}</h1>
 
                     </div>
 
-                    <div class="row row-cols-xl-4 row-cols-md-2 row-cols-1">
+                    <div class="row row-cols-xl-{{$count}} row-cols-md-2 row-cols-1">
 
-                        <a href="service.html"><div class="service-wrap">
+                        @foreach ($services as $service )
+                        <a href="{{route('view.service',$service->id)}}"><div class="service-wrap">
 
                             <div class="service-box">
 
@@ -276,75 +282,15 @@
                                         <rect id="_Transparent_Rectangle" style="fill:none;" width="32" height="32"></rect>
                                     </svg>
                                 </div>
-                                <p class="service-desc">1.Patient Services</p>
+                                <p class="service-desc">1.{{$service->title}}</p>
 
                             </div>
                         </div></a>
-                        <a href=""><div class="service-wrap">
+                        @endforeach
 
-                            <div class="service-box">
 
-                                <div class="service-icon">
-
-                                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 28.832 28.832" style="enable-background:new 0 0 28.832 28.832;" xml:space="preserve"><g><path d="M11.98,5.373c0-1.584,1.284-2.869,2.869-2.869s2.869,1.284,2.869,2.869s-1.284,2.869-2.869,2.869   S11.98,6.957,11.98,5.373z M15.716,15.621c0.616-0.658,1.479-1.075,2.575-1.245c0.249-0.038,0.513-0.061,0.786-0.077   c0.088-0.003,0.171-0.012,0.259-0.012h1.707c-1.253-0.521-2.141-1.761-2.141-3.203c0-0.575,0.143-1.12,0.394-1.596   c-0.89-0.325-1.711-0.32-1.711-0.32h-5.753c-0.643,0.015-1.183,0.096-1.636,0.23c0.281,0.5,0.442,1.076,0.442,1.686   c0,1.442-0.887,2.681-2.142,3.203h1.412c0.017-0.002,0.033-0.002,0.051-0.002c0.1,0,0.209,0.004,0.319,0.012   c0.235,0.017,0.492,0.053,0.758,0.107c1.444,0.303,3.186,1.253,3.379,3.527l0.002,0.051v1.774h0.362l0.002-1.774   C14.779,17.957,14.729,16.675,15.716,15.621z M6.993,13.983c1.582,0,2.869-1.287,2.869-2.871S8.575,8.243,6.993,8.243   c-1.584,0-2.869,1.285-2.869,2.869C4.124,12.695,5.41,13.983,6.993,13.983z M9.728,14.908H3.976   c-4.118,0.076-3.975,3.103-3.975,3.103L0,25.067h0.004c0,0.017-0.003,0.035-0.003,0.05c0,0.67,0.545,1.211,1.213,1.211   c0.669,0,1.209-0.541,1.209-1.211c0-0.016-0.002-0.033-0.005-0.05h0.005v-6.532h0.758l-0.006,6.958l7.266,0.006l-0.006-6.996h0.786   v6.563h0.004c0,0.003,0,0.006,0,0.01c0,0.669,0.541,1.211,1.207,1.211c0.669,0,1.211-0.542,1.211-1.211c0-0.004,0-0.007,0-0.01   V18.01C13.378,14.861,9.728,14.908,9.728,14.908z M22.185,13.982c1.585,0,2.87-1.285,2.87-2.87s-1.285-2.87-2.87-2.87   s-2.87,1.285-2.87,2.87C19.316,12.697,20.6,13.982,22.185,13.982z M24.921,14.908h-5.754c-4.119,0.076-3.973,3.103-3.973,3.103   l-0.002,7.056h0.005c0,0.017-0.003,0.035-0.003,0.05c0,0.67,0.544,1.211,1.212,1.211c0.669,0,1.208-0.541,1.208-1.211   c0-0.016-0.003-0.033-0.004-0.05h0.004v-6.532h0.76l-0.009,6.958l7.266,0.006l-0.006-6.996h0.786v6.563h0.002   c0,0.003,0,0.006,0,0.01c0,0.669,0.542,1.211,1.21,1.211c0.667,0,1.209-0.542,1.209-1.211c0-0.004,0-0.007,0-0.01V18.01   C28.57,14.861,24.921,14.908,24.921,14.908z"></path></g></svg>
-
-                                </div>
-                                <p class="service-desc">2.Brokage Services</p>
-
-                            </div>
-                        </div></a>
-                        <a href=""><div class="service-wrap">
-
-                            <div class="service-box">
-
-                                <div class="service-icon">
-
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 324.667 324.667" enable-background="new 0 0 324.667 324.667">
-                                      <g>
-                                        <path d="m168.333,69.539v-2.739h2.738c3.313,0 6-2.687 6-6s-2.687-6-6-6h-2.738v-2.738c0-3.313-2.687-6-6-6s-6,2.687-6,6v2.738h-2.738c-3.313,0-6,2.687-6,6s2.687,6 6,6h2.738v2.738c0,3.313 2.687,6 6,6s6-2.686 6-5.999z"></path>
-                                        <path d="m54.919,199.478c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6z"></path>
-                                        <path d="m78.748,199.478c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.686,6 6,6z"></path>
-                                        <path d="m54.919,229.12c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6z"></path>
-                                        <path d="m78.748,229.12c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.686,6 6,6z"></path>
-                                        <path d="m54.919,258.762c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.314 2.687,6 6,6z"></path>
-                                        <path d="m78.748,258.762c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.314 2.686,6 6,6z"></path>
-                                        <path d="m245.919,199.478c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6z"></path>
-                                        <path d="m269.748,199.478c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.686,6 6,6z"></path>
-                                        <path d="m245.919,229.12c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6z"></path>
-                                        <path d="m269.748,229.12c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.313 2.686,6 6,6z"></path>
-                                        <path d="m245.919,258.762c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.314 2.687,6 6,6z"></path>
-                                        <path d="m269.748,258.762c3.313,0 6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6v8.614c0,3.314 2.686,6 6,6z"></path>
-                                        <path d="m144.419,155.221v8.614c0,3.313 2.687,6 6,6s6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6z"></path>
-                                        <path d="m168.248,155.221v8.614c0,3.313 2.687,6 6,6s6-2.687 6-6v-8.614c0-3.313-2.687-6-6-6s-6,2.687-6,6z"></path>
-                                        <path d="m150.419,178.864c-3.313,0-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6s6-2.687 6-6v-8.614c0-3.314-2.686-6-6-6z"></path>
-                                        <path d="m174.248,178.864c-3.313,0-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6s6-2.687 6-6v-8.614c0-3.314-2.687-6-6-6z"></path>
-                                        <path d="m150.419,208.506c-3.313,0-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6s6-2.687 6-6v-8.614c0-3.314-2.686-6-6-6z"></path>
-                                        <path d="m174.248,208.506c-3.313,0-6,2.687-6,6v8.614c0,3.313 2.687,6 6,6s6-2.687 6-6v-8.614c0-3.314-2.687-6-6-6z"></path>
-                                        <path d="m318.667,284.144h-12.611v-127.376c0-3.314-2.687-6-6-6h-78v-42.943c0-3.313-2.687-6-6-6h-47.723v-8.747h20.277c3.313,0 6-2.687 6-6v-52.555c0-3.313-2.687-6-6-6h-52.555c-3.313,0-6,2.687-6,6v52.555c0,3.313 2.687,6 6,6h20.277v8.747h-47.723c-3.313,0-6,2.687-6,6v42.943h-78c-3.313,0-6,2.686-6,6v127.376h-12.609c-3.313,0-6,2.687-6,6s2.687,6 6,6h312.667c3.313,0 6-2.687 6-6s-2.687-6-6-6zm-108.611-170.319v170.319h-10.056v-26.374c0-3.313-2.687-6-6-6h-63.333c-3.313,0-6,2.687-6,6v26.375h-10.056v-170.32h95.445zm-22.056,170.319h-51.333v-20.374h51.333v20.374zm106.056,0h-72v-121.376h72v121.376zm-191.445,0h-72v-121.376h72v121.376zm39.445-243.621h40.555v40.555h-40.555v-40.555z"></path>
-                                      </g>
-                                    </svg>
-
-                                </div>
-                                <p class="service-desc">3.SERVICES TO SAUDI MEDICAL ORGANIZATIONS</p>
-
-                            </div>
-                        </div></a>
-                        <a href=""><div class="service-wrap">
-
-                            <div class="service-box">
-
-                                <div class="service-icon">
-
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 422.505 422.505" style="enable-background:new 0 0 422.505 422.505;" xml:space="preserve">
-                                    <path d="M173.946,74.015c0-5.523,4.477-10,10-10h17.312V46.703c0-5.523,4.477-10,10-10s10,4.477,10,10v17.312h17.312  c5.523,0,10,4.477,10,10s-4.477,10-10,10h-17.312v17.313c0,5.523-4.477,10-10,10s-10-4.477-10-10V84.015h-17.312  C178.423,84.015,173.946,79.538,173.946,74.015z M414.669,412.505c0,5.523-4.477,10-10,10H17.835c-5.523,0-10-4.477-10-10  s4.477-10,10-10H56.19V74.014c0-5.523,4.477-10,10-10h71.725C142.812,27.913,173.836,0,211.258,0  c37.421,0,68.445,27.914,73.341,64.015l71.725-0.001c2.652,0,5.196,1.054,7.071,2.929c1.875,1.875,2.929,4.419,2.929,7.071v328.491  h38.345C410.192,402.505,414.669,406.982,414.669,412.505z M157.242,74.015c0,29.784,24.231,54.015,54.016,54.015  c29.784,0,54.014-24.231,54.014-54.015S241.042,20,211.258,20C181.474,20,157.242,44.231,157.242,74.015z M201.258,330.476h-51.581  v72.029h51.576L201.258,330.476z M272.839,330.476h-51.582l-0.005,72.029h51.586V330.476z M346.325,84.014H284.6  c-4.896,36.101-35.92,64.016-73.341,64.016c-37.422,0-68.447-27.915-73.343-64.016H76.19v318.491h53.487v-82.029  c0-5.523,4.477-10,10-10h71.581h0h71.581c5.523,0,10,4.477,10,10v82.029h53.485V84.014z M279.986,172.169h34.076  c5.523,0,10,4.477,10,10v89.148c0,5.523-4.477,10-10,10h-34.076c-5.523,0-10-4.477-10-10v-89.148  C269.986,176.646,274.463,172.169,279.986,172.169z M289.986,261.317h14.076v-69.148h-14.076V261.317z M238.294,182.169v89.148  c0,5.523-4.477,10-10,10H194.22c-5.523,0-10-4.477-10-10v-89.148c0-5.523,4.477-10,10-10h34.074  C233.817,172.169,238.294,176.646,238.294,182.169z M218.294,192.169H204.22v69.148h14.074V192.169z M152.53,182.169v89.148  c0,5.523-4.477,10-10,10h-34.075c-5.523,0-10-4.477-10-10v-89.148c0-5.523,4.477-10,10-10h34.075  C148.053,172.169,152.53,176.646,152.53,182.169z M132.53,192.169h-14.075v69.148h14.075V192.169z"></path></svg>
-
-                                </div>
-                                <p class="service-desc">4.SERVICES TO NON - SAUDI MEDICAL ORGANIZATIONS</p>
-
-                            </div>
-                        </div></a>
                     </div>
-                    <a class="about-more duplicated-btn mx-auto mt-0 mt-sm-3" href="services.html">View More</a>
+                    <a class="about-more duplicated-btn mx-auto mt-0 mt-sm-3" href="{{route('view.services')}}">{{__('app.view')}}</a>
 
                 </div>
 
@@ -362,8 +308,8 @@
             <div class="container">
 
                   <div class="title-wrap text-center mb-box mb-sm-5">
-                    <span class="sub-title">our staff</span>
-                     <h1 class="main-title">Meet Our Specialists</h1>
+                    <span class="sub-title">{{__('app.staff')}}</span>
+                     <h1 class="main-title">{{__('app.titleOfDoctors')}}</h1>
                 </div>
 
             </div>
@@ -378,98 +324,38 @@
                                 <div class="swiper staff-slider">
 
                                       <div class="swiper-wrapper">
+                                        @foreach ($doctors as $doctor)
+                                        <div class="swiper-slide">
 
-                                            <div class="swiper-slide">
 
                                             <div class="staff-box padding-box">
 
-                                                    <div class="staff-img">
+                                                <div class="staff-img">
 
-                                                        <img class="img-fluid "src="{{asset('front/img/person.png')}}" alt="staffName">
-
-                                                    </div>
-                                                    <div class="staff-details">
-
-                                                        <div class="staff-info">
-
-                                                            <h5 class="staff-name">Name Surname</h5>
-                                                            <p class="staff-position">Co-Founder & CTO</p>
-
-                                                        </div>
-                                                        <p class="staff-desc">
-
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                            eiusmod tempor incididunt ut ero labore et dolore.
-
-                                                        </p>
-
-                                                    </div>
-                                                    <a class="contact-btn hvr-underline-from-left " href="#">contact</a>
-
-                                            </div>
-                                            </div>
-                                            <div class="swiper-slide">
-
-                                                <div class="staff-box padding-box">
-
-                                                    <div class="staff-img">
-
-                                                        <img class="img-fluid "src="{{asset('front/img/person.png')}}" alt="staffName">
-
-                                                    </div>
-                                                    <div class="staff-details">
-
-                                                        <div class="staff-info">
-
-                                                            <h5 class="staff-name">Name Surname</h5>
-                                                            <p class="staff-position">Co-Founder & CTO</p>
-
-                                                        </div>
-                                                        <p class="staff-desc">
-
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                            eiusmod tempor incididunt ut ero labore et dolore.
-
-                                                        </p>
-
-                                                    </div>
-                                                    <a class="contact-btn hvr-underline-from-left " href="#">contact</a>
+                                                    <img class="img-fluid  img-circle img-bordered-sm" style="border-radius:50%; border:2px solid #1b7c1e;padding:2px " src="{{asset('storage/images/doctor/'.$doctor->user->image)}}" alt="staffName">
 
                                                 </div>
+                                                <div class="staff-details">
 
+                                                    <div class="staff-info">
 
-                                            </div>
-                                            <div class="swiper-slide">
-
-                                                <div class="staff-box padding-box">
-
-                                                    <div class="staff-img">
-
-                                                        <img class="img-fluid "src="{{asset('front/img/person.png')}}" alt="staffName">
+                                                        <h5 class="staff-name">{{$doctor->user->f_name ." ". $doctor->user->l_name}}</h5>
+                                                        <p class="staff-position">{{$doctor->spachilty->name ??""}}</p>
 
                                                     </div>
-                                                    <div class="staff-details">
-
-                                                        <div class="staff-info">
-
-                                                            <h5 class="staff-name">Name Surname</h5>
-                                                            <p class="staff-position">Co-Founder & CTO</p>
-
-                                                        </div>
-                                                        <p class="staff-desc">
-
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                            eiusmod tempor incididunt ut ero labore et dolore.
-
-                                                        </p>
-
-                                                    </div>
-                                                    <a class="contact-btn hvr-underline-from-left " href="#">contact</a>
-
+                                                    <p class="staff-desc ">
+                                                        {{$doctor->description}}
+                                                    </p>
                                                 </div>
-
+                                                <a class="contact-btn hvr-underline-from-left " href="#">{{__('app.contactDoc')}}</a>
 
                                             </div>
+
+
+                                        </div>
+                                        @endforeach
+
+
 
 
                                       </div>
@@ -480,7 +366,7 @@
                         </div>
                         <div class="more-wrap mt-4 pt-2 mt-sm-5 pt-sm-0">
 
-                            <a class="about-more duplicated-btn mx-auto" href="staff.html">View More</a>
+                            <a class="about-more duplicated-btn mx-auto" href="{{route('view.staff')}}">{{__('app.view')}}</a>
 
                         </div>
 
@@ -505,10 +391,9 @@
 
                     <p class="banner-text">
 
-                        Our Service Saves Time And Effort For Our Clients By Remining & Coordinating The Service
-                        As Well As Providing Advice On The Most Suitable Provider With Reasonable Cost .
+                        {{__('app.bannerBrowser')}}
                     </p>
-                    <a class="banner-link duplicated-btn" href="services.html">Browser Our Services</a>
+                    <a class="banner-link duplicated-btn" href="{{route('view.services')}}">{{__('app.buttonBrowser')}}</a>
 
                 </div>
 
@@ -522,20 +407,15 @@
 
         <section class="section-style opinions">
             <div class="container">
-                <h1 class="main-title w-50 m-auto titel-opinions"> opinions of our customers</h1>
+                <h1 class="main-title w-50 m-auto titel-opinions"> {{__('app.titleOpinion')}}</h1>
               <div class="row mt-5 notes row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-xl-3 gx-0 gx-md-2 gy-5">
-                <div class="fram fram1 ">
-                  <h5>Eka Ardilah</h5>
-                  <p class="note ">I feel very helpful with all the books provided, so I do my job easily and happily Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                </div>
-                <div class="fram  fram2 ">
-                  <h5>Hazar Hamzah</h5>
-                  <p class="note">Thank you. Many good books to accompany everyday Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, dolores?</p>
-                </div>
-                <div class="fram fram3 ">
-                  <h5>Khoerunnisa</h5>
-                  <p class="note">Thanks team, many recommended books for me to read Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur, veniam doloremque.</p>
-                </div>
+              @foreach ($opinions as $opinion)
+              <div class="fram fram1 ">
+                <h5>{{$opinion->name}}</h5>
+                <p class="note ">{{$opinion->description}}</p>
+              </div>
+              @endforeach
+
               </div>
             </div>
           </section>
@@ -544,116 +424,7 @@
 
         <!-- ***** contact-us-section Start ***** -->
 
-        <section class="section-style contact-us-section">
 
-            <div class="container">
-
-                <div class="contact-area">
-
-                    <div class="row">
-
-                        <div class="col-lg-6">
-
-                            <div class="contact-boxes">
-
-                                <div class="box-item info-box padding-box">
-
-                                    <div class="title-wrap ">
-                                        <span class="sub-title">contact us</span>
-                                        <h1 class="main-title">our information</h1>
-                                    </div>
-                                    <div class="info-items">
-
-                                        <div class="info-item">
-
-                                            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-                                            <div class="info-texts">
-
-                                                <span class="text-item info-title">ADDRESS</span>
-                                                <span class="text-item info-val">AL NA'AYEM AL IZDIHAR DISTRICT 3666</span>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="info-item">
-
-                                            <div class="info-icon"><i class="far fa-envelope"></i></div>
-                                            <div class="info-texts">
-
-                                                <span class="text-item info-title">EMAIL</span>
-                                                <a href="#" class="text-item info-val">INFO@MFHMC.SA</a>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="info-item">
-
-                                            <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
-                                            <div class="info-texts">
-
-                                                <span class="text-item info-title">PHONE</span>
-                                                <span class="text-item info-val">014358888</span>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                                <div class="box-item hours-box padding-box">
-
-                                    <div class="title-wrap ">
-                                        <h1 class="main-title">Opening Hours</h1>
-                                    </div>
-                                    <div class="info-items">
-
-                                        <div class="info-item">
-
-                                            <div class="info-texts ">
-
-                                                <span class="text-item info-title">SATURDAY - THURSDAY</span>
-                                                <span class="text-item info-val">09:00 - 20:00</span>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="info-item">
-
-                                            <div class="info-texts ">
-
-                                                <span class="text-item info-title">SATURDAY - FRIDAY</span>
-                                                <span class="text-item info-val">14:00 - 20:00</span>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6">
-
-                           <div class="map-container mt-box mt-lg-0" id="map">
-
-                               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28979.453789321382!2d46.753383950057724!3d24.780666225054798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2efda2e71a4331%3A0xf746e0fda2277c89!2z2KfZhNin2LLYr9mH2KfYsdiMINin2YTYsdmK2KfYtiDYp9mE2LPYudmI2K_Zitip!5e0!3m2!1sar!2seg!4v1663162736376!5m2!1sar!2seg"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
 
         <!-- ***** contact-us-section End ***** -->
 
@@ -667,7 +438,12 @@
 
 @section('script')
 
+
     <script>
+
+
+
+
 
 
         /*------------- #staff slider --------------*/

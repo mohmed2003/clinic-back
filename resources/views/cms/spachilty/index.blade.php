@@ -72,6 +72,7 @@
                       <tr>
                       <th>ID</th>
                       <th>Name</th>
+                      <th>Name_ar</th>
                       @canany(['Edit Spachilty', 'Delete Spachilty', 'Show Spachilty'])
                       <th>Setting</th>
                       @endcanany
@@ -81,6 +82,7 @@
                      @foreach($spachilties as $spachilty)
                     <tr>
                       <td>{{$spachilty->id}}</td>
+                      <td>{{$spachilty->name}}</td>
                       <td>{{$spachilty->name}}</td>
                       {{-- <td>{{$spachilty->cities_count}}</td> --}}
                       @canany(['Edit Spachilty', 'Delete Spachilty', 'Show Spachilty'])

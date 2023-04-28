@@ -77,7 +77,7 @@
 
                     <div class="form-group col-md-6">
                         <label for="gender"> Gender</label>
-                        <select class="form-select form-select-sm" name="gender" style="width: 100%;"
+                        <select class="form-control select2" name="gender" style="width: 100%;"
                               id="gender" aria-label=".form-select-sm example">
                              <option value="male">Male</option>
                              <option value="female">FeMale </option>
@@ -86,7 +86,7 @@
 
                     <div class="form-group col-md-6">
                            <label for="status"> Status</label>
-                           <select class="form-select form-select-sm" name="status" style="width: 100%;"
+                           <select class="form-control select2" name="status" style="width: 100%;"
                                  id="status" aria-label=".form-select-sm example">
                                 <option value="active">Active </option>
                                 <option value="inactive">InActive </option>
@@ -141,7 +141,7 @@
       formData.append('date',document.getElementById('date').value);
       formData.append('gender',document.getElementById('gender').value);
       formData.append('status',document.getElementById('status').value);
-      formData.append('city_id',document.getElementById('city_id').value);
+    //   formData.append('city_id',document.getElementById('city_id').value);
       formData.append('image',document.getElementById('image').files[0]);
       formData.append('role_id',document.getElementById('role_id').value);
 

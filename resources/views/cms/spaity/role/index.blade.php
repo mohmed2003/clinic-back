@@ -56,9 +56,9 @@
 
                          </div>
                 </form>
-              {{-- @can('Create Role') --}}
+              @can('Create Role')
               <a href="{{ route('roles.create') }}" type="submit" class="btn btn-success">Add New roles</a>
-              {{-- @endcan --}}
+              @endcan
               {{-- <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                   <input type="text" name="table_search" class="form-control float-right" placeholder="Search">

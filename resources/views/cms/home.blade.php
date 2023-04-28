@@ -24,7 +24,9 @@
         <!-- col -->
         @php
         use App\Models\Doctor;
-        $count = Doctor::count('id');
+        $countCo = Doctor::where('type','co-doctor')->count('id');
+        $count = Doctor::where('type','from our stuff')->count('id');
+
         @endphp
 
           <div class="col-12 col-sm-6 col-md-4">
@@ -32,7 +34,20 @@
               <a href="{{route('doctors.index')}}" class="info-box-icon bg-danger elevation-1"><i class=" fas fa-user-md"></i></a>
 
               <div class="info-box-content">
-                <a href="{{route('doctors.index')}}" class="info-box-text">Number of Doctors </a>
+                <a href="{{route('doctors.index')}}" class="info-box-text">Number of Co-Doctors </a>
+                <a href="{{route('doctors.index')}}" class="info-box-number">{{$countCo}}</a>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4">
+            <div class="info-box mb-3">
+              <a href="{{route('doctors.index')}}" class="info-box-icon bg-danger elevation-1"><i class=" fas fa-user-md"></i></a>
+
+              <div class="info-box-content">
+                <a href="{{route('doctors.index')}}" class="info-box-text">Number of Our Doctors </a>
                 <a href="{{route('doctors.index')}}" class="info-box-number">{{$count}}</a>
               </div>
               <!-- /.info-box-content -->
@@ -140,7 +155,46 @@
               <!-- /.info-box -->
             </div>
             <!-- /.col -->
-    </div>
+
+            @php
+            use App\Models\Service;
+            $serCount = Service::count('id');
+            @endphp
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="info-box mb-3">
+                  <a href="{{route('services.index')}}" class="info-box-icon bg-warning elevation-1"><i class="nav-icon fab fa-servicestack"></i>
+                  </a>
+
+                  <div class="info-box-content">
+                    <a href="{{route('services.index')}}" class="info-box-text"> Number of Services</a>
+                    <a href="{{route('services.index')}}" class="info-box-number">{{$serCount}}</a>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+
+
+            @php
+            use App\Models\Hospital;
+            $serCount = Hospital::count('id');
+            @endphp
+
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="info-box mb-3">
+                  <a href="{{route('hospitals.index')}}" class="info-box-icon bg-warning elevation-1"><i class="nav-icon fas fa-hospital"></i>
+                  </a>
+
+                  <div class="info-box-content">
+                    <a href="{{route('hospitals.index')}}" class="info-box-text"> Number of Hospitals</a>
+                    <a href="{{route('hospitals.index')}}" class="info-box-number">{{$serCount}}</a>
+                  </div>
+                  <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+        </div>
 </div>
 
 @endsection

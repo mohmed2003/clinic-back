@@ -35,6 +35,13 @@
                         <textarea class="form-control" disabled placeholder="Leave a comment here" id="description" name="description" style="height: 150px">{{$steps->sentence}}</textarea>
                       </div>
                   </div>
+
+                  <div class="form-group w-50">
+                    <label for="description_ar">Description_ar</label>
+                    <div class="form-floating">
+                        <textarea class="form-control" disabled placeholder="Leave a comment here" id="description_ar" name="description_ar" style="height: 150px">{{$steps->sentence_ar}}</textarea>
+                      </div>
+                  </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">

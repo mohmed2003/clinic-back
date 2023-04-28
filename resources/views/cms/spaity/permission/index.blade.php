@@ -55,9 +55,9 @@
 
                          </div>
                 </form>
-              {{-- @can('Create Permission') --}}
+              @can('Create Permission')
               <a href="{{ route('permissions.create') }}" type="submit" class="btn btn-success">Add New Permission</a>
-              {{-- @endcan --}}
+              @endcan
               {{-- <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                   <input type="text" name="table_search" class="form-control float-right" placeholder="Search">

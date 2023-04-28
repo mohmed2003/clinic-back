@@ -26,6 +26,7 @@
               <!-- form start -->
               <form>
                 <div class="card-body">
+
                     <div class="form-group">
                         <label for="country_id">Name Country</label>
                         <select class="form-control select2" style="width: 100%;"id="country_id" name="country_id">
@@ -42,9 +43,19 @@
                     <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                   </div>
                   <div class="form-group">
-                    <label for="street">City Ctreet</label>
+                    <label for="street">Street</label>
                     <input type="text" class="form-control" id="street" name="street" placeholder="street">
                   </div>
+
+
+              <div class="form-group">
+                <label for="name_ar">Name City_ar</label>
+                <input type="text" class="form-control" id="name_ar" name="name_ar" placeholder="Name">
+              </div>
+              <div class="form-group">
+                <label for="street_ar">Street_ar</label>
+                <input type="text" class="form-control" id="street_ar" name="street_ar" placeholder="street">
+              </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
@@ -67,8 +78,9 @@
     formData.append('name',document.getElementById('name').value);
     formData.append('country_id',document.getElementById('country_id').value);
     formData.append('street',document.getElementById('street').value);
+    formData.append('name_ar',document.getElementById('name_ar').value);
+    formData.append('street_ar',document.getElementById('street_ar').value);
     store('/cms/admin/cities', formData);
-    console.log(document.getElementById('country_id').value);
   }
 </script>
 

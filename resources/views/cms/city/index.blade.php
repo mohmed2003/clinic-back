@@ -100,7 +100,7 @@
                         <button type="button" onclick="performDestroy({{$city->id}},this)"  class="btn btn-danger">Delete</button>
                         @endcan
                         @can('Show City')
-                        {{-- <a href="{{route('cities.show',$city->id)}}"  class="btn btn-success">Show</a> --}}
+                        <a href="{{route('cities.show',$city->id)}}"  class="btn btn-success">Show</a>
                         @endcan
                       </div>
                     </td>

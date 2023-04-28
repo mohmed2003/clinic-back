@@ -29,6 +29,10 @@
                     <input type="text" class="form-control" id="name" name="name" placeholder="name" value="{{$countries->name}}">
                   </div>
                   <div class="form-group">
+                    <label for="name_ar">Name Country_ar</label>
+                    <input type="text" class="form-control" id="name_ar" name="name_ar" placeholder="Name" value="{{$countries->name_ar}}">
+                  </div>
+                  <div class="form-group">
                     <label for="code">Country Code</label>
                     <input type="text" class="form-control" id="code" name="code" placeholder="code" value="{{$countries->code}}">
                   </div>
@@ -49,6 +53,7 @@
   function performUbdate(id){
     let formData=new FormData();
     formData.append('name',document.getElementById('name').value);
+    formData.append('name_ar',document.getElementById('name_ar').value);
     formData.append('code',document.getElementById('code').value);
     storeRoute('/cms/admin/countries_update/'+id, formData)
   }

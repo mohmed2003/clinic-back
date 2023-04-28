@@ -21,6 +21,10 @@ class HospitalController extends Controller
         if ($request->get('name')) {
             $hospitals = Hospital::where('name', 'like', '%' . $request->name . '%');
         }
+        if ($request->get('type')) {
+            $hospitals = Hospital::where('type', 'like', '%' . $request->type . '%');
+        }
+
 
         $hospitals=$hospitals->paginate(20);
         return response()->view('cms.hospital.index',compact('hospitals'));
@@ -51,8 +55,10 @@ class HospitalController extends Controller
 
   $validator=validator($request->all(),[
     'name'=>'required|string|min:2|max:20',
-    // 'description'=>'required'
-  ]);
+    'name_ar'=>'required|string|min:2|max:25',
+    'city_id'=>'required',
+    'url'=>'required'
+]);
          if($validator->fails()){
             return response()->json([
             'icon'=>'error',
@@ -61,6 +67,8 @@ class HospitalController extends Controller
          }else{
             $hospitals=new Hospital();
             $hospitals->name=$request->get('name');
+            $hospitals->name_ar=$request->get('name_ar');
+            $hospitals->url=$request->get('url');
             $hospitals->city_id=$request->get('city_id');
             $isSaved=$hospitals->save();
             return response()->json([
@@ -79,9 +87,11 @@ class HospitalController extends Controller
     public function show($id)
     {
         $hospitals=Hospital::findOrFail($id);
+        $cities=City::all();
+
         $this->authorize('view' , Hospital::class);
 
-        return response()->view('cms.hospital.show',compact('hospitals'));
+        return response()->view('cms.hospital.show',compact('hospitals','cities'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -110,12 +120,16 @@ class HospitalController extends Controller
     {
         $validator=Validator($request->all([
             'name'=>'required|string|min:2|max:25',
-            'description'=>'required'
+            'name_ar'=>'required|string|min:2|max:25',
+            'city_id'=>'required',
+            'url'=>'required'
         ]));
 
         if(!$validator->fails()){
         $hospitals=Hospital::findOrFail($id);
         $hospitals->name=$request->get('name');
+        $hospitals->name_ar=$request->get('name_ar');
+        $hospitals->url=$request->get('url');
         $hospitals->city_id=$request->get('city_id');
         $isUpdate=$hospitals->save();
 
